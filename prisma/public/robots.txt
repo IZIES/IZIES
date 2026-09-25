@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Crawl budget optimization
+Crawl-delay: 1
+
+# Block admin and candidate private areas
+Disallow: /admin
+Disallow: /candidate/dashboard
+Disallow: /candidate/profile
+Disallow: /candidate/offer
+
+# Sitemap reference
+Sitemap: https://izies.in/sitemap.xml

@@ -1,0 +1,28 @@
+
+    <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="careersBg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#04130F" />
+          <stop offset="100%" stop-color="#0A261D" />
+        </linearGradient>
+        <linearGradient id="emeraldGrad" x1="80" y1="80" x2="430" y2="430" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#34D399" />
+          <stop offset="50%" stop-color="#10B981" />
+          <stop offset="100%" stop-color="#059669" />
+        </linearGradient>
+        <filter id="careersGlow">
+          <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#10B981" flood-opacity="0.5" />
+        </filter>
+      </defs>
+      <rect width="512" height="512" rx="128" fill="url(#careersBg)"/>
+      <rect width="504" height="504" x="4" y="4" rx="124" fill="none" stroke="url(#emeraldGrad)" stroke-width="3" opacity="0.4"/>
+      
+      <!-- Career Growth Star & Rocket Ascent -->
+      <g filter="url(#careersGlow)">
+        <!-- Rocket / Star Emblem -->
+        <path d="M256 90 L295 195 L405 200 L320 270 L350 385 L256 325 L162 385 L192 270 L107 200 L217 195 Z" fill="url(#emeraldGrad)"/>
+        <circle cx="256" cy="245" r="40" fill="#FFFFFF"/>
+        <path d="M256 220 L270 260 L242 260 Z" fill="#10B981"/>
+      </g>
+    </svg>
+  

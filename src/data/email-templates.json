@@ -1,0 +1,73 @@
+{
+  "APPLIED": {
+    "stage": "APPLIED",
+    "subject": "Application Received: {jobTitle}",
+    "headline": "Application Successfully Received 🚀",
+    "introParagraph": "Thank you for applying to IZIES Technologies for the position of <strong>{jobTitle}</strong>. We are thrilled to review your profile.",
+    "actionCallout": "Your application is currently being evaluated by our engineering leadership team. You can monitor your real-time stage progress directly from your student dashboard.",
+    "mainContent": "Our hiring and engineering leads carefully assess every application. We look at foundational understanding, problem-solving craft, personal projects, and code hygiene rather than just resume buzzwords.",
+    "nextSteps": [
+      "Our talent team will review your profile, GitHub repositories, and submitted coursework.",
+      "If shortlisted, you will receive an invitation to an introductory First Call screening.",
+      "Track your status, test assignments, and upcoming schedules anytime in your Student Portal."
+    ],
+    "ctaText": "Track Application Status →"
+  },
+  "FIRST_CALL": {
+    "stage": "FIRST_CALL",
+    "subject": "Interview Invitation: First Call Screening — {jobTitle} 📞",
+    "headline": "Great News! Invited for First Call Screening 📞✨",
+    "introParagraph": "Following a thorough evaluation of your application for <strong>{jobTitle}</strong>, our team is excited to invite you to an introductory First Call screening.",
+    "actionCallout": "This is a relaxed 20–30 minute conversational session designed to discuss your project journey, technical curiosities, and what working at IZIES entails.",
+    "mainContent": "During this round, we want to hear about the engineering challenges you enjoy solving, your familiarity with modern web platforms, and your availability for the role.",
+    "nextSteps": [
+      "Review the custom meeting details or invite link provided below.",
+      "Be prepared to talk through your highlighted projects and coursework.",
+      "Prepare any questions you have about IZIES engineering culture and vision."
+    ],
+    "ctaText": "Open Candidate Dashboard →"
+  },
+  "INTERVIEW": {
+    "stage": "INTERVIEW",
+    "subject": "Technical Pairing & Architecture Round: {jobTitle} 💻",
+    "headline": "You're Moving Forward: Technical Pairing Round 💻🔥",
+    "introParagraph": "Congratulations on advancing past the introductory stage! We are pleased to invite you to the <strong>Technical Pairing & Architecture Round</strong> for <strong>{jobTitle}</strong>.",
+    "actionCallout": "This session is an interactive, collaborative pairing interview with our core tech leads. We focus on real-world engineering thinking, clean code, and design patterns.",
+    "mainContent": "We value clear reasoning, architectural instincts, and pragmatic trade-offs over memorized algorithms. You'll work together with an engineer on a practical problem.",
+    "nextSteps": [
+      "Ensure you have a reliable broadband connection, quiet workspace, and preferred IDE ready.",
+      "The meeting will be conducted via Google Meet / Screen share.",
+      "You will be asked to walk through an architectural concept and build a working snippet."
+    ],
+    "ctaText": "View Interview Schedule →"
+  },
+  "HIRED": {
+    "stage": "HIRED",
+    "subject": "Official Offer Letter: {jobTitle} — Please Review & Sign ✍️",
+    "headline": "Official Appointment & Sign-and-Return Mandatory ✍️🎉",
+    "introParagraph": "On behalf of the entire IZIES leadership and engineering team, we are exceedingly pleased to extend this formal <strong>Letter of Appointment & Offer</strong> to you for the position of <strong>{jobTitle}</strong>!",
+    "actionCallout": "Digital signature required within 7 business days!",
+    "mainContent": "Throughout our evaluation process, your technical depth, craftsmanship, problem-solving abilities, and initiative stood out. We have generated your formal Letter of Appointment detailing your role, company governance rules, and Annexures.",
+    "nextSteps": [
+      "Click the button below to access your formal Letter of Appointment.",
+      "Read all governance rules, IP assignment, confidentiality terms, and Annexure A.",
+      "Sign digitally in Annexure B and submit within seven (7) business days.",
+      "Download or print your PDF duplicate copy for your records."
+    ],
+    "ctaText": "✍️ Review, Sign & Return Official Offer Letter →"
+  },
+  "REJECTED": {
+    "stage": "REJECTED",
+    "subject": "Update regarding your application for {jobTitle}",
+    "headline": "Application Status Update",
+    "introParagraph": "Thank you for taking the time to apply and speak with our team regarding the <strong>{jobTitle}</strong> position at IZIES.",
+    "actionCallout": "While we are not moving forward with your application for this specific role at this time, your profile will remain in our talent network for future opportunities.",
+    "mainContent": "We received a very high volume of remarkable applications, and after careful review, we have chosen to move forward with other candidates whose skill sets and project timelines more closely align with our immediate needs.",
+    "nextSteps": [
+      "Your candidate profile remains active in our talent directory.",
+      "Our team frequently revisits past applicants as new engineering and internship cohorts open up.",
+      "We encourage you to continue building exceptional software and wish you the best in your journey."
+    ],
+    "ctaText": "View Student Dashboard →"
+  }
+}

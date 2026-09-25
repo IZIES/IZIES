@@ -1,0 +1,13 @@
+export { HeroSection } from "./HeroSection";
+export { CompanyIntroSection } from "./CompanyIntroSection";
+export { CapabilitiesSection } from "./CapabilitiesSection";
+export { DeliveryModelsSection } from "./DeliveryModelsSection";
+export { IndustriesSection } from "./IndustriesSection";
+export { WhatWeBuildSection } from "./WhatWeBuildSection";
+export { ApproachSection } from "./ApproachSection";
+export { WhyChooseUsSection } from "./WhyChooseUsSection";
+export { LabsInnovationSection } from "./LabsInnovationSection";
+export { AboutSection } from "./AboutSection";
+export { LeadershipSection } from "./LeadershipSection";
+export { ContactSection } from "./ContactSection";
+export { FadeInScroll } from "./FadeInScroll";
