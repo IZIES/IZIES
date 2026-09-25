@@ -44,6 +44,9 @@ export const metadata: Metadata = {
   authors: [{ name: "IZIES" }],
   creator: "IZIES",
   publisher: "IZIES",
+  verification: {
+    google: "fQV6uFp2rcWwW2Xo_2jMwZYqa2YRWafO9edEV-l06-8"
+  },
   formatDetection: { email: false, telephone: false, address: false },
   openGraph: {
     type: "website",
