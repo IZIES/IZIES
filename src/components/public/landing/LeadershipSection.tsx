@@ -37,7 +37,7 @@ export async function LeadershipSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-center">
+        <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
           {leaders.map((leader, idx) => {
             const gradients = [
               "from-purple-500/20 to-blue-500/20",
@@ -50,7 +50,7 @@ export async function LeadershipSection() {
             return (
               <div
                 key={leader.id}
-                className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 group flex flex-col items-center text-center space-y-6"
+                className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 group flex flex-col items-center text-center space-y-6 max-w-sm"
               >
                 {/* Avatar */}
                 <div

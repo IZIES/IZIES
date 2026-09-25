@@ -7,6 +7,74 @@ import { capabilityContent } from "@/lib/capabilities";
 import { getServiceBySlug, serviceIds } from "@/lib/service-details";
 import { businessMetadata, jsonLd, ORGANIZATION_ID, SITE_URL } from "@/lib/seo";
 
+const serviceCTAs: Record<string, { primary: string; secondary: string; emailSubject: string }> = {
+  ai: {
+    primary: "Discuss your AI project",
+    secondary: "Share your use case, data sources, and evaluation criteria",
+    emailSubject: "AI Development & Integration enquiry"
+  },
+  "web-saas": {
+    primary: "Discuss your web product",
+    secondary: "Describe your users, workflows, and launch timeline",
+    emailSubject: "Website & SaaS Development enquiry"
+  },
+  mobile: {
+    primary: "Discuss your mobile app",
+    secondary: "Outline target platforms, device features, and backend needs",
+    emailSubject: "Mobile App Development enquiry"
+  },
+  automation: {
+    primary: "Discuss your automation workflow",
+    secondary: "List the tools, triggers, and approval steps involved",
+    emailSubject: "Business Automation & Integrations enquiry"
+  },
+  "backend-api": {
+    primary: "Discuss your API project",
+    secondary: "Share data models, consumers, and traffic expectations",
+    emailSubject: "Backend & API Development enquiry"
+  },
+  "cloud-devops": {
+    primary: "Discuss your cloud setup",
+    secondary: "Describe current hosting, release frequency, and uptime needs",
+    emailSubject: "Cloud Infrastructure & DevOps enquiry"
+  },
+  "data-analytics": {
+    primary: "Discuss your reporting needs",
+    secondary: "Identify source systems, key metrics, and dashboard users",
+    emailSubject: "Data Engineering & Analytics enquiry"
+  },
+  web3: {
+    primary: "Discuss your Web3 project",
+    secondary: "Define the on-chain purpose, network, and review requirements",
+    emailSubject: "Blockchain & Web3 Development enquiry"
+  },
+  "media-streaming": {
+    primary: "Discuss your media platform",
+    secondary: "Specify content types, playback needs, and creator workflows",
+    emailSubject: "Video & Media Platform Development enquiry"
+  },
+  immersive: {
+    primary: "Discuss your 3D experience",
+    secondary: "Share interaction goals, target devices, and asset availability",
+    emailSubject: "Gaming, 3D & Interactive Development enquiry"
+  },
+  "testing-qa": {
+    primary: "Discuss your QA strategy",
+    secondary: "List critical journeys, environments, and release criteria",
+    emailSubject: "Software Testing & QA enquiry"
+  },
+  "dedicated-team": {
+    primary: "Discuss team augmentation",
+    secondary: "Outline roadmap, required skills, and collaboration model",
+    emailSubject: "Dedicated Development Teams enquiry"
+  },
+  "support-maintenance": {
+    primary: "Discuss support coverage",
+    secondary: "Describe the application, current issues, and response targets",
+    emailSubject: "Software Support & Maintenance enquiry"
+  }
+};
+
 type Props = { params: { slug: string } };
 
 // Only the service catalog's known URLs should resolve to a detail page.
@@ -27,6 +95,7 @@ export default function ServiceDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const url = `${SITE_URL}/services/${service.slug}`;
+  const cta = serviceCTAs[service.id] || { primary: "Discuss your project", secondary: "Share your requirements so we can scope the work", emailSubject: `${service.title} enquiry` };
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -80,7 +149,7 @@ export default function ServiceDetailPage({ params }: Props) {
         <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">{service.description}</p>
         <div className="flex flex-wrap gap-4 pt-2">
           <Link href="/#contact" className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/20 hover:opacity-90">
-            Discuss your project <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            {cta.primary} <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
           <a href="#scope" className="inline-flex items-center px-6 py-3 rounded-2xl border border-white/10 text-sm text-slate-300 hover:text-white hover:bg-white/5">Explore the scope</a>
         </div>
@@ -158,7 +227,7 @@ export default function ServiceDetailPage({ params }: Props) {
             <ul className="list-disc pl-4 space-y-3 text-sm text-slate-300 leading-relaxed">
               {service.planning.map(item => <li key={item}>{item}</li>)}
             </ul>
-            <a href={`mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(`${service.title} enquiry`)}`} className="inline-flex items-start gap-2 text-sm text-indigo-300 hover:text-white break-all">
+            <a href={`mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(cta.emailSubject)}`} className="inline-flex items-start gap-2 text-sm text-indigo-300 hover:text-white break-all">
               <Mail className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />{BUSINESS_EMAIL}
             </a>
           </div>
@@ -191,8 +260,8 @@ export default function ServiceDetailPage({ params }: Props) {
 
       <section className="mt-16 glass-card p-8 sm:p-10 rounded-3xl border border-indigo-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="space-y-3 max-w-xl">
-          <h2 className="text-2xl font-bold text-white">Tell us what you need to build or improve</h2>
-          <p className="text-slate-300 leading-relaxed">Share your requirements and existing setup so we can discuss a scope that fits your business.</p>
+          <h2 className="text-2xl font-bold text-white">{cta.primary}</h2>
+          <p className="text-slate-300 leading-relaxed">{cta.secondary}</p>
         </div>
         <Link href="/#contact" className="shrink-0 inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500">Start a conversation <ArrowRight className="w-4 h-4" aria-hidden="true" /></Link>
       </section>

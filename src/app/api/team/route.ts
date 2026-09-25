@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const teamMembers = await prisma.teamMember.findMany({
-      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+      orderBy: { createdAt: "asc" },
     });
 
     const formattedTeamMembers = teamMembers.map((m) => ({

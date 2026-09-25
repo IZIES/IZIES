@@ -163,21 +163,21 @@ export default function AdminTeamPage() {
         </Button>
       </div>
 
-      {/* Team Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+{/* Team Cards Grid */}
+      <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
         {loading ? (
           <div className="col-span-full py-12 text-center text-xs text-slate-400 animate-pulse">
             Loading team members...
           </div>
         ) : team.length === 0 ? (
           <div className="col-span-full p-12 text-center text-xs text-slate-400 bg-card/20 rounded-3xl border border-white/[0.06]">
-            No custom team members added yet. Click &quot;Add Team Member&quot; to showcase your core leadership and mentors!
+            No custom team members added yet. Click "Add Team Member" to showcase your core leadership and mentors!
           </div>
         ) : (
           team.map((member) => (
             <div
               key={member.id}
-              className={`p-5 rounded-3xl border transition-all duration-300 space-y-4 flex flex-col justify-between ${
+              className={`p-5 rounded-3xl border transition-all duration-300 space-y-4 flex flex-col justify-between max-w-sm ${
                 member.isPublic !== false
                   ? "bg-[#0A0D18] border-white/[0.08] hover:border-purple-500/30 shadow-lg shadow-black/40"
                   : "bg-[#0A0D18]/50 border-amber-500/20 opacity-75"
