@@ -2,7 +2,7 @@
 
 ## Scope and confirmed facts
 
-Business SEO only: `/` and the new `/services` hub. Careers, candidate and recruitment page SEO was explicitly excluded by the owner after the initial audit. Their existing sitemap entries and functionality remain.
+Business SEO only: `/`, `/services`, the 13 service detail pages and supporting company/contact/trust surfaces. Careers, candidate and recruitment page SEO was explicitly excluded by the owner after the initial audit. Their existing sitemap entries and functionality remain unless explicitly requested later.
 
 Owner-confirmed: IZIES is a remote digital engineering business, targeting India and international clients, from startups/SMBs to enterprises. All existing service categories are relevant. Service availability is 24×7. Business contact: `company.izies@gmail.com`. There is currently no public portfolio or public office. No new locations, clients, testimonials, ratings, awards, employee counts, certifications or performance statistics were created.
 
@@ -35,10 +35,12 @@ Paths are relative to `kosma-careers`.
 | src/lib/capabilities.ts | Shared descriptions and deliverables for 13 existing services; confirmed 24×7 availability. No technology-list display or invented proof. |
 | src/app/layout.tsx | Digital-engineering company defaults; one Organization and one WebSite definition, confirmed email, working icon/manifest URLs. No global homepage canonical or irrelevant global FAQ. |
 | src/app/(public)/page.tsx | Unique business homepage metadata and a page-specific catalog referencing the same organization. |
-| src/app/(public)/services/page.tsx | Server-rendered, substantive service directory with 13 capabilities, accessible service anchors, scope guidance, process/product links and enquiry CTAs. No dozens of thin keyword pages. |
+| src/app/(public)/services/page.tsx | Server-rendered, substantive service directory with 13 capabilities, service-detail links, scope guidance, process/product links and enquiry CTAs. No dozens of thin keyword pages. |
+| src/app/(public)/services/[slug]/page.tsx | Service detail route for 13 real services with unique metadata, one H1, service-specific copy, visible FAQs, related-service links, Breadcrumb/Service/FAQ schema and enquiry CTAs. |
 | src/app/robots.ts | Public crawling and asset access preserved; sitemap uses production domain. Existing private/API exclusions retained. |
-| src/app/sitemap.ts | Added canonical services URL; removed invented current-date timestamps from static pages. Existing public/recruitment discovery retained without new recruitment SEO. |
+| src/app/sitemap.ts | Added canonical services URL and all 13 service detail URLs; removed invented current-date timestamps from static pages. Existing public/recruitment discovery retained without new recruitment SEO. |
 | src/app/not-found.tsx | Custom 404 with one H1 and crawlable links to home/services. |
+| src/middleware.ts | Existing admin/candidate route guards retained. Unknown `/services/*` slugs now return HTTP 404 with `noindex` to avoid soft-404 or duplicate service URLs. |
 | src/app/manifest.ts | Business-focused app description. |
 | src/components/public/Navbar.tsx | Real anchor destinations while preserving same-page smooth scrolling, mobile closing and modified-click behavior. |
 | src/components/public/Footer.tsx | Correct home-fragment destinations from inner pages, services hub link, confirmed email fallback. |
@@ -85,10 +87,52 @@ Only the confirmed public business settings were changed in this SEO work: `syst
 - Final production server: homepage and services returned HTTP 200; unique title/description, exactly one canonical and H1, expected indexability and OG URL.
 - One Organization, WebSite and OfferCatalog per business page; 13 services per catalog and confirmed email verified.
 - 64 internal links/anchors checked from business pages.
-- robots.txt and XML sitemap passed; sitemap had 20 unique production-domain URLs at verification time, including retained existing careers entries.
+- robots.txt and XML sitemap passed. After the latest service-sitemap fix, local production verification returned 13 service detail URLs in the sitemap. The count can be higher on production when published job URLs are also present.
 - Social image, logo, favicon, manifest and service-worker paths returned 200.
-- Unknown page returned 404; services trailing slash and www redirects returned 308; www redirect preserved query parameters.
+- Unknown page returned 404; invalid service slugs now return HTTP 404 with `noindex`; services trailing slash and www redirects returned 308; www redirect preserved query parameters.
 - Build output: homepage approximately 130 KB first-load JS; services approximately 94.7 KB, with 185 B route code for the server-rendered services hub. No before/after percentage or CWV score is claimed.
+
+Latest local production proof after the service sitemap and invalid-slug fix:
+
+```text
+LOCAL_SERVICE_DETAIL_URLS 13
+/services/ai-development        status=200  robots=index, follow
+/services/not-a-real-service    status=404  robots=noindex
+/services/xyz-test              status=404  robots=noindex
+```
+
+## What to do next
+
+High priority before/after deployment:
+
+1. Deploy the latest `main` branch to Vercel and confirm the live `https://izies.in/sitemap.xml` includes all 13 service detail pages.
+2. In Google Search Console, submit `https://izies.in/sitemap.xml`, then inspect the homepage, `/services`, and the most important service pages.
+3. Confirm live invalid service URLs such as `/services/not-a-real-service` return `404` and are not indexed.
+4. Update OfferCatalog service item URLs so they point directly to `/services/{slug}` detail pages instead of old `/services#service-*` anchors.
+5. Improve ranking intent on the highest-demand service pages first: web development, mobile app development, AI development and business automation.
+
+Business ranking content priorities:
+
+1. Strengthen `/services/web-development` for searches like "website banwana hai", "business website development", "web app development" and "SaaS development".
+2. Strengthen `/services/mobile-app-development` for "app banwana hai", "mobile app development", "Android app development" and "iOS app development".
+3. Strengthen `/services/ai-development` for "AI chatbot development", "AI automation for business" and "AI assistant for business".
+4. Strengthen `/services/business-automation` for "business automation", "workflow automation" and "CRM automation".
+5. Add a dedicated custom software development page only if it is treated as a real service page with useful content, not a thin keyword page.
+
+Trust and authority priorities:
+
+1. Create real Privacy Policy, Terms of Service and Security/Trust pages when the business details are ready.
+2. Set up Google Business Profile only with real remote/service-area business information. Do not add a fake office address.
+3. Keep official LinkedIn and GitHub profiles complete and consistent with the website.
+4. Add real case studies, testimonials, client logos or reviews only when they can be shown publicly and truthfully.
+5. Avoid fake/spam backlinks. Use genuine brand profiles, useful content, real mentions and legitimate directories.
+
+Measurement priorities:
+
+1. Track GSC impressions, clicks, CTR and average position by page and query.
+2. Watch "Discovered - currently not indexed", "Crawled - currently not indexed", soft 404 and duplicate canonical reports.
+3. Run PageSpeed Insights on mobile for `/`, `/services`, `/services/web-development`, `/services/mobile-app-development` and `/services/ai-development`.
+4. Keep a monthly keyword/content review based on actual GSC data rather than guessing.
 
 ## Local validation commands
 
