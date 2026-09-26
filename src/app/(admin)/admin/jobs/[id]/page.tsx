@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -93,7 +93,7 @@ export default function AdminJobDetailPage() {
   // Updating Status of Candidate
   const [updatingAppId, setUpdatingAppId] = useState<string | null>(null);
 
-  const fetchJobData = () => {
+  const fetchJobData = useCallback(() => {
     if (!id) return;
     setLoading(true);
     fetch(`/api/admin/jobs/${id}`)
@@ -114,11 +114,11 @@ export default function AdminJobDetailPage() {
       })
       .catch(() => setError("Failed to connect to server"))
       .finally(() => setLoading(false));
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchJobData();
-  }, [id]);
+  }, [fetchJobData]);
 
   const handleStatusChange = async (newStatus: string) => {
     if (!job) return;

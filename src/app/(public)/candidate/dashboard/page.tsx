@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -68,7 +68,7 @@ function CandidateDashboardContent() {
   // Resume Preview Modal State
   const [previewOpen, setPreviewOpen] = useState(false);
 
-  const fetchCandidateData = () => {
+  const fetchCandidateData = useCallback(() => {
     setLoading(true);
     fetch("/api/candidate/me")
       .then((res) => res.json())
@@ -112,11 +112,11 @@ function CandidateDashboardContent() {
         }
       })
       .catch(() => {});
-  };
+  }, [router]);
 
   useEffect(() => {
     fetchCandidateData();
-  }, []);
+  }, [fetchCandidateData]);
 
   const handleLogout = async () => {
     await fetch("/api/candidate/logout", { method: "POST" });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Edit3 } from "lucide-react";
@@ -79,7 +79,7 @@ function AdminApplicantsContent() {
   const [viewOfferModalOpen, setViewOfferModalOpen] = useState(false);
   const [selectedOfferApplicant, setSelectedOfferApplicant] = useState<any | null>(null);
 
-  const fetchApplicants = () => {
+  const fetchApplicants = useCallback(() => {
     setLoading(true);
     const params = new URLSearchParams();
     if (search) params.set("search", search);
@@ -96,11 +96,11 @@ function AdminApplicantsContent() {
       })
       .catch((err) => console.error("Error fetching applicants:", err))
       .finally(() => setLoading(false));
-  };
+  }, [search, selectedJob, selectedStatus]);
 
   useEffect(() => {
     fetchApplicants();
-  }, [search, selectedJob, selectedStatus]);
+  }, [fetchApplicants]);
 
   const fetchApplicantEmails = async (applicantId: string) => {
     setLoadingEmails(true);

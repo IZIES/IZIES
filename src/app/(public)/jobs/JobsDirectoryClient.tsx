@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Sparkles, Briefcase, RefreshCw, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,7 @@ export function JobsDirectoryClient() {
   // Apply Modal state
   const [selectedJobForApply, setSelectedJobForApply] = useState<JobSummary | null>(null);
 
-  const fetchJobs = () => {
+  const fetchJobs = useCallback(() => {
     setLoading(true);
     const params = new URLSearchParams();
     if (search) params.set("search", search);
@@ -47,14 +47,14 @@ export function JobsDirectoryClient() {
       })
       .catch((err) => console.error("Error fetching jobs:", err))
       .finally(() => setLoading(false));
-  };
+  }, [search, selectedDept, selectedWorkplace, selectedExperience, departments.length]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchJobs();
     }, 250);
     return () => clearTimeout(timer);
-  }, [search, selectedDept, selectedWorkplace, selectedExperience]);
+  }, [fetchJobs]);
 
   return (
     <div className="py-12 sm:py-20 px-6 max-w-7xl mx-auto min-h-screen">

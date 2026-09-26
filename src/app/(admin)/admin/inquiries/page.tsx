@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Inbox,
   Mail,
@@ -45,7 +45,7 @@ export default function AdminInquiriesPage() {
   const [noteText, setNoteText] = useState("");
   const [savingNote, setSavingNote] = useState(false);
 
-  const fetchInquiries = () => {
+  const fetchInquiries = useCallback(() => {
     setLoading(true);
     const params = new URLSearchParams();
     if (selectedStatus !== "ALL") params.set("status", selectedStatus);
@@ -61,11 +61,11 @@ export default function AdminInquiriesPage() {
       })
       .catch((err) => console.error("Error fetching inquiries:", err))
       .finally(() => setLoading(false));
-  };
+  }, [selectedStatus, searchQuery]);
 
   useEffect(() => {
     fetchInquiries();
-  }, [selectedStatus, searchQuery]);
+  }, [fetchInquiries]);
 
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     // Optimistic UI update
