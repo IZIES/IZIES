@@ -800,27 +800,30 @@ export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
             <button
               onClick={() => handleScroll("contact")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 h-13 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold shadow-xl shadow-indigo-600/30 text-base transition-all active:scale-95 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold shadow-xl shadow-indigo-600/30 text-sm transition-all active:scale-[0.98] cursor-pointer"
             >
-              <span>Start a Project</span>
+              <span className="hidden sm:inline">Start a Project</span>
+              <span className="sm:hidden">Start Project</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => handleScroll("capabilities")}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-7 h-13 rounded-2xl text-base text-slate-300 border border-white/10 hover:bg-white/[0.05] hover:text-white transition-all cursor-pointer backdrop-blur-xl"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 rounded-2xl text-sm text-slate-300 border border-white/10 hover:bg-white/[0.05] hover:text-white transition-all cursor-pointer backdrop-blur-xl"
             >
-              Explore Capabilities
+              <span className="hidden sm:inline">Explore Capabilities</span>
+              <span className="sm:hidden">Capabilities</span>
             </button>
 
             <button
               onClick={() => handleScroll("models")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 h-13 rounded-2xl text-sm font-bold text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl text-sm font-bold text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all cursor-pointer"
             >
-              <span>How We Partner</span>
+              <span className="hidden sm:inline">How We Partner</span>
+              <span className="sm:hidden">Partner Models</span>
             </button>
           </div>
 

@@ -12,9 +12,9 @@ export async function Footer() {
   return (
     <footer className="border-t border-white/[0.08] bg-[#05070D] pt-16 pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Col */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative flex items-center justify-center">
                 <Image

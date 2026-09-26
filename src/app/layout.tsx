@@ -36,6 +36,10 @@ const organizationSchema = {
     { "@type": "Country", name: "India" },
     { "@type": "Place", name: "Worldwide" },
   ],
+  sameAs: [
+    "https://github.com/IZIES",
+    "https://www.linkedin.com/company/izies",
+  ],
 };
 
 const websiteSchema = {
