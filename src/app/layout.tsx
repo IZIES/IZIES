@@ -19,10 +19,23 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": "https://izies.in/#organization",
   name: "IZIES",
+  alternateName: "IZIES.in",
+  legalName: "IZIES",
   email: BUSINESS_EMAIL,
   url: "https://izies.in",
-  logo: "https://izies.in/brand/izies-logo-512.png",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://izies.in/brand/izies-logo-512.png",
+    width: 512,
+    height: 512,
+    caption: "IZIES logo",
+  },
+  image: "https://izies.in/brand/izies-logo-512.png",
   description: BUSINESS_DESCRIPTION,
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "Place", name: "Worldwide" },
+  ],
 };
 
 const websiteSchema = {
@@ -30,8 +43,10 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": "https://izies.in/#website",
   name: "IZIES",
+  alternateName: "IZIES Digital Engineering",
   url: "https://izies.in",
   publisher: { "@id": "https://izies.in/#organization" },
+  inLanguage: "en-IN",
 };
 
 export const metadata: Metadata = {
@@ -70,6 +85,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],

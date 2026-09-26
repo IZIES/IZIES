@@ -2,14 +2,13 @@
 module.exports = {
   siteUrl: 'https://izies.in',
   generateRobotsTxt: true,
-  generateIndexSitemap: true,
+  generateIndexSitemap: false,
   exclude: ['/server-sitemap.xml', '/api/*', '/candidate/*', '/jobs/*', '/jobs/[slug]', '/robots.txt', '/manifest.webmanifest', '/sitemap.xml'],
   robotsTxtOptions: {
     policies: [
       { userAgent: '*', allow: '/' },
       { userAgent: '*', disallow: ['/api/', '/candidate/', '/jobs/'] },
     ],
-    additionalSitemaps: ['https://izies.in/sitemap.xml'],
   },
   transform: async (config, path) => {
     const priorityMap = {
