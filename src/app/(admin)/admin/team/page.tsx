@@ -171,7 +171,7 @@ export default function AdminTeamPage() {
           </div>
         ) : team.length === 0 ? (
           <div className="col-span-full p-12 text-center text-xs text-slate-400 bg-card/20 rounded-3xl border border-white/[0.06]">
-            No custom team members added yet. Click "Add Team Member" to showcase your core leadership and mentors!
+            No custom team members added yet. Click &apos;Add Team Member&apos; to showcase your core leadership and mentors!
           </div>
         ) : (
           team.map((member) => (

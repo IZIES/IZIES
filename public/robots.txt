@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+Disallow: /candidate/
+Disallow: /jobs/
+
+# Host
+Host: https://izies.in
+
+# Sitemaps
+Sitemap: https://izies.in/sitemap.xml
