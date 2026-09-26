@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
+import { capabilityContent } from "@/lib/capabilities";
 
 export const revalidate = 3600;
 
@@ -31,6 +32,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const servicePages: MetadataRoute.Sitemap = Object.values(capabilityContent).map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   // Dynamic published jobs
   const jobs = await prisma.job.findMany({
     where: { status: "PUBLISHED" },
@@ -45,5 +52,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...jobPages];
+  return [...staticPages, ...servicePages, ...jobPages];
 }

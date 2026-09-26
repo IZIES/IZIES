@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { capabilityContent } from "@/lib/capabilities";
+
+const serviceSlugs = new Set(Object.values(capabilityContent).map((service) => service.slug));
 
 function isValidToken(token?: string): boolean {
   if (!token) return false;
@@ -30,6 +33,21 @@ function isValidToken(token?: string): boolean {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/services/")) {
+    const serviceSlug = pathname.slice("/services/".length).split("/")[0];
+    if (!serviceSlugs.has(serviceSlug)) {
+      return new NextResponse(
+        "<!doctype html><html><head><meta name=\"robots\" content=\"noindex\" /><title>Page not found</title></head><body>Page not found</body></html>",
+        {
+          status: 404,
+          headers: {
+            "content-type": "text/html; charset=utf-8",
+          },
+        },
+      );
+    }
+  }
 
   // 1. Admin Routes Guard
   if (pathname.startsWith("/admin")) {
@@ -80,5 +98,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/candidate/:path*"],
+  matcher: ["/admin/:path*", "/candidate/:path*", "/services/:path*"],
 };
