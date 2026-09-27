@@ -23,6 +23,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: hsl(var(--foreground));
   background: #05070D;

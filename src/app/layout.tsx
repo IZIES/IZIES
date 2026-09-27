@@ -3,12 +3,19 @@ import type { Metadata, Viewport } from "next";
 import { BUSINESS_DESCRIPTION, SITE_URL } from "@/lib/seo";
 import { BUSINESS_EMAIL } from "@/lib/business";
 
-import { Outfit } from "next/font/google";
+import { Outfit, Righteous } from "next/font/google";
 
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-outfit",
+});
+
+const logoFont = Righteous({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-logo",
 });
 
 import ProgressBarProvider from "@/components/ProgressBarProvider";
@@ -90,6 +97,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
@@ -110,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark scroll-smooth ${outfit.variable}`}>
+    <html lang="en" className={`dark scroll-smooth ${outfit.variable} ${logoFont.variable}`}>
       <head>
         <script
           type="application/ld+json"

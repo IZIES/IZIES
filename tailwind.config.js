@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-outfit)'],
+        logo: ['var(--font-logo)'],
       },
       colors: {
         background: "hsl(var(--background))",

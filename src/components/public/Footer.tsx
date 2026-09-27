@@ -33,12 +33,14 @@ export async function Footer() {
                   height={48}
                   src="/brand/izies-logo-transparent.png"
                   alt="IZIES"
-                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-[0_0_15px_rgba(34,211,238,0.6)] group-hover:drop-shadow-[0_0_25px_rgba(34,211,238,1)] transition-all duration-500 group-hover:scale-105"
                 />
               </div>
-              <div>
-                <span className="font-extrabold text-2xl tracking-tight text-white">IZIES</span>
-                <p className="text-[11px] text-cyan-400/80 uppercase tracking-widest font-semibold mt-0.5">Technology & Digital Innovation</p>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2">
+                  <span className="font-logo font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-300">IZIES</span>
+                </div>
+                <span className="text-[11px] text-cyan-400/80 uppercase tracking-widest font-semibold mt-0.5">Technology & Digital Innovation</span>
               </div>
             </div>
 
