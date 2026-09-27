@@ -6,6 +6,7 @@ import { BUSINESS_EMAIL } from "@/lib/business";
 import { capabilityContent } from "@/lib/capabilities";
 import { getServiceBySlug, serviceIds } from "@/lib/service-details";
 import { businessMetadata, jsonLd, ORGANIZATION_ID, SITE_URL } from "@/lib/seo";
+import { FadeInScroll } from "@/components/public/landing/FadeInScroll";
 
 const serviceCTAs: Record<string, { primary: string; secondary: string; emailSubject: string }> = {
   ai: {
@@ -158,22 +159,26 @@ export default function ServiceDetailPage({ params }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-12 lg:gap-16">
         <div className="min-w-0 space-y-16">
-          <section id="overview" className="space-y-5 scroll-mt-28">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">Build around the problem you need to solve</h2>
-            {service.introduction.map(paragraph => <p key={paragraph} className="text-slate-300 leading-relaxed">{paragraph}</p>)}
-          </section>
+          <FadeInScroll>
+            <section id="overview" className="space-y-5 scroll-mt-28">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Build around the problem you need to solve</h2>
+              {service.introduction.map(paragraph => <p key={paragraph} className="text-slate-300 leading-relaxed">{paragraph}</p>)}
+            </section>
+          </FadeInScroll>
 
-          <section id="scope" className="space-y-6 scroll-mt-28">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">What the work can include</h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {service.items.map(item => (
-                <li key={item} className="glass-card flex items-start gap-3 rounded-2xl p-5 border border-white/10 text-sm text-slate-200 leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-1 text-indigo-400" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <FadeInScroll delay={0.1}>
+            <section id="scope" className="space-y-6 scroll-mt-28">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">What the work can include</h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {service.items.map(item => (
+                  <li key={item} className="glass-card flex items-start gap-3 rounded-2xl p-5 border border-white/10 text-sm text-slate-200 leading-relaxed">
+                    <CheckCircle2 className="w-4 h-4 shrink-0 mt-1 text-indigo-400" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </FadeInScroll>
 
           <section id="use-cases" className="space-y-6 scroll-mt-28">
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Example use cases</h2>
