@@ -125,7 +125,7 @@ export function HeroSystemsCanvas() {
       const rect = canvas.getBoundingClientRect();
       width = Math.max(1, rect.width);
       height = Math.max(1, rect.height);
-      dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.15);
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -145,27 +145,7 @@ export function HeroSystemsCanvas() {
       };
     };
 
-    const drawGrid = () => {
-      context.save();
-      context.strokeStyle = "rgba(148, 163, 184, 0.074)";
-      context.lineWidth = 1;
 
-      for (let x = -80; x <= width + 80; x += 72) {
-        context.beginPath();
-        context.moveTo(x, 0);
-        context.lineTo(x + width * 0.11, height);
-        context.stroke();
-      }
-
-      for (let y = 20; y <= height; y += 74) {
-        context.beginPath();
-        context.moveTo(0, y);
-        context.lineTo(width, y + height * 0.055);
-        context.stroke();
-      }
-
-      context.restore();
-    };
 
     const drawAurora = (time: number) => {
       context.save();
@@ -190,16 +170,16 @@ export function HeroSystemsCanvas() {
           const y =
             baseY +
             offset +
-            Math.sin(x * 0.009 + time * stream.speed * 5 + stream.phase + scroll.y * 0.002) * stream.amplitude +
-            Math.cos(x * 0.004 + streamIndex) * 22;
+            Math.sin(x * 0.003 + time * stream.speed * 3 + stream.phase + scroll.y * 0.001) * (stream.amplitude * 0.6) +
+            Math.cos(x * 0.002 + streamIndex) * 15;
           context.lineTo(x, y);
         }
 
-        context.lineTo(width + 80, baseY + offset + 110);
-        context.lineTo(-80, baseY + offset + 110);
+        context.lineTo(width + 80, baseY + offset + 130);
+        context.lineTo(-80, baseY + offset + 130);
         context.closePath();
         context.fillStyle = gradient;
-        context.filter = "blur(18px)";
+        context.filter = "blur(24px)";
         context.fill();
         context.filter = "none";
       });
@@ -235,8 +215,6 @@ export function HeroSystemsCanvas() {
       context.translate(x, y);
       context.strokeStyle = `rgba(${color}, ${alpha})`;
       context.lineWidth = Math.max(0.7, radius * 0.45);
-        context.shadowBlur = radius * 5;
-      context.shadowColor = `rgba(${color}, ${Math.min(0.9, alpha + 0.18)})`;
 
       context.beginPath();
       context.moveTo(-radius * 2.6, 0);
@@ -256,25 +234,21 @@ export function HeroSystemsCanvas() {
       context.globalCompositeOperation = "lighter";
 
       stars.forEach((star, index) => {
-        const shimmer = reducedMotion.matches
-          ? 0.58
-          : 0.42 + Math.sin(time * 0.0016 + star.phase) * 0.28;
+        const shimmerBase = (Math.sin(time * 0.002 + star.phase) + 1) / 2;
+        const shimmer = reducedMotion.matches ? 0.58 : Math.pow(shimmerBase, 6) * 1.5;
         const x = star.x * width;
         const y = star.y * height;
 
         if (index % 10 === 0) {
-          drawStar(x, y, star.size * 1.5, star.color, shimmer * 0.5);
+          drawStar(x, y, star.size * 2, star.color, Math.min(1, shimmer));
         } else {
           context.beginPath();
-          context.fillStyle = `rgba(${star.color}, ${shimmer * 0.5})`;
-          context.shadowBlur = star.size * 5;
-          context.shadowColor = `rgba(${star.color}, ${shimmer})`;
+          context.fillStyle = `rgba(${star.color}, ${Math.min(0.8, shimmer + 0.1)})`;
           context.arc(x, y, star.size, 0, Math.PI * 2);
           context.fill();
         }
       });
 
-      context.shadowBlur = 0;
       context.restore();
     };
 
@@ -338,27 +312,23 @@ export function HeroSystemsCanvas() {
         const gradient = context.createLinearGradient(tailX, tailY, x, y);
         gradient.addColorStop(0, `rgba(${comet.color}, 0)`);
         gradient.addColorStop(0.72, `rgba(${comet.color}, ${0.14 * fade})`);
-        gradient.addColorStop(1, `rgba(255, 255, 255, ${0.58 * fade})`);
+        gradient.addColorStop(1, `rgba(255, 255, 255, ${0.8 * fade})`);
 
         context.strokeStyle = gradient;
         context.lineWidth = 1.45;
-        context.shadowBlur = 12;
-        context.shadowColor = `rgba(${comet.color}, ${0.48 * fade})`;
         context.beginPath();
         context.moveTo(tailX, tailY);
         context.lineTo(x, y);
         context.stroke();
 
-        drawStar(x, y, 1.6, comet.color, 0.58 * fade);
+        drawStar(x, y, 2.5, comet.color, 0.8 * fade);
       });
 
-      context.shadowBlur = 0;
       context.restore();
     };
 
     const draw = (time: number) => {
       context.clearRect(0, 0, width, height);
-      drawGrid();
       drawStarfield(time);
       drawAurora(time);
       drawCoreGlow(time);
@@ -375,13 +345,55 @@ export function HeroSystemsCanvas() {
 
           if (distance < connectDistance) {
             const alpha = (1 - distance / connectDistance) * 0.15;
-            const color = NODE_COLORS[nodes[i].hue];
-            context.strokeStyle = `rgba(${color}, ${alpha})`;
+            const baseColor = NODE_COLORS[nodes[i].hue];
+            let strokeStyle: string | CanvasGradient = `rgba(${baseColor}, ${alpha})`;
+            let isGlowing = false;
+
+            // Apply traveling glow directly to the base line
+            if ((i + j) % 12 === 0) {
+              const sparkProgress = (time * 0.00025 + i * 0.15 + j * 0.05) % 1;
+              const sparkFade = Math.sin(sparkProgress * Math.PI); 
+
+              if (sparkFade > 0.1) {
+                isGlowing = true;
+                const startNode = positions[i].y < positions[j].y ? positions[i] : positions[j];
+                const endNode = positions[i].y < positions[j].y ? positions[j] : positions[i];
+
+                const grad = context.createLinearGradient(startNode.x, startNode.y, endNode.x, endNode.y);
+                const startStop = Math.max(0, sparkProgress - 0.15);
+                const endStop = Math.min(1, sparkProgress + 0.15);
+
+                grad.addColorStop(0, `rgba(${baseColor}, ${alpha})`);
+                if (startStop > 0) grad.addColorStop(startStop, `rgba(${baseColor}, ${alpha})`);
+                
+                // The glowing segment
+                grad.addColorStop(sparkProgress, `rgba(16, 255, 160, ${sparkFade})`);
+                
+                if (endStop < 1) grad.addColorStop(endStop, `rgba(${baseColor}, ${alpha})`);
+                grad.addColorStop(1, `rgba(${baseColor}, ${alpha})`);
+
+                strokeStyle = grad;
+              }
+            }
+
+            context.strokeStyle = strokeStyle;
             context.lineWidth = 1.15;
+            
+            if (isGlowing) {
+              context.shadowColor = "rgba(16, 255, 160, 1)";
+              context.shadowBlur = 12;
+            }
+
             context.beginPath();
             context.moveTo(positions[i].x, positions[i].y);
             context.lineTo(positions[j].x, positions[j].y);
             context.stroke();
+
+            // Draw one extra time for pure brightness if glowing
+            if (isGlowing) {
+              context.stroke();
+              context.shadowBlur = 0; // reset
+            }
           }
         }
       }
@@ -417,7 +429,7 @@ export function HeroSystemsCanvas() {
 
     const animate = (time: number) => {
       if (!isVisible) {
-        animationFrame = 0;
+        animationFrame = window.requestAnimationFrame(animate);
         return;
       }
 
@@ -426,11 +438,7 @@ export function HeroSystemsCanvas() {
         return;
       }
 
-      if (time - lastFrame > 32) {
-        draw(time);
-        lastFrame = time;
-      }
-
+      draw(time);
       animationFrame = window.requestAnimationFrame(animate);
     };
 

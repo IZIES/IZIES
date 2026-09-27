@@ -37,6 +37,38 @@ body {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  animation: iz-grid-drift 20s linear infinite;
+}
+
+@keyframes iz-grid-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-40px, -40px, 0); }
+}
+
+@keyframes iz-spark-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+
+.bg-spark-layer-1 {
+  background-size: 200px 200px;
+  background-position: 40px 40px;
+  background-image: radial-gradient(circle, rgba(34, 211, 238, 0.9) 1px, transparent 2px);
+  animation: iz-grid-drift 20s linear infinite, iz-spark-blink 4s ease-in-out infinite;
+}
+
+.bg-spark-layer-2 {
+  background-size: 160px 160px;
+  background-position: 80px 120px;
+  background-image: radial-gradient(circle, rgba(168, 85, 247, 0.9) 1px, transparent 2px);
+  animation: iz-grid-drift 20s linear infinite, iz-spark-blink 5.5s ease-in-out infinite alternate-reverse;
+}
+
+.bg-spark-layer-3 {
+  background-size: 240px 240px;
+  background-position: 200px 80px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 2px);
+  animation: iz-grid-drift 20s linear infinite, iz-spark-blink 3s ease-in-out infinite 1s;
 }
 
 .bg-dot-pattern {
@@ -75,16 +107,15 @@ body {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 0%, rgba(125, 211, 252, 0.08), transparent 34%),
-    radial-gradient(circle at 86% 18%, rgba(168, 85, 247, 0.08), transparent 38%),
-    linear-gradient(180deg, rgba(14, 19, 35, 0.64) 0%, rgba(8, 12, 22, 0.82) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(148, 163, 184, 0.14);
+    radial-gradient(circle at 18% 0%, rgba(125, 211, 252, 0.04), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(168, 85, 247, 0.04), transparent 38%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.85) 0%, rgba(3, 5, 10, 0.96) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow:
-    0 20px 44px -18px rgba(0, 0, 0, 0.72),
-    0 0 34px rgba(34, 211, 238, 0.035),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 20px 44px -18px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -158,12 +189,13 @@ section h2 {
 
 .iz-capabilities-section .glass-card {
   background:
-    radial-gradient(circle at 16% 0%, rgba(99, 102, 241, 0.075), transparent 34%),
-    linear-gradient(180deg, rgba(12, 16, 30, 0.9), rgba(7, 10, 19, 0.95)) !important;
-  border-color: rgba(148, 163, 184, 0.16) !important;
+    radial-gradient(circle at 16% 0%, rgba(99, 102, 241, 0.05), transparent 34%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.88), rgba(3, 5, 10, 0.98)) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
   box-shadow:
-    0 18px 42px -20px rgba(0, 0, 0, 0.82),
-    inset 0 1px 0 rgba(255, 255, 255, 0.055) !important;
+    0 18px 42px -20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(24px) !important;
 }
 
 .iz-capabilities-section .glass-card::after {
@@ -256,7 +288,7 @@ section h2 {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.4;
   mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
 }
 
@@ -520,6 +552,19 @@ section h2 {
   animation: iz-shooting-star 8.8s ease-in-out infinite;
 }
 
+.iz-exp-shoot::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 14px 4px rgba(125, 211, 252, 0.8), 0 0 24px 8px rgba(255, 255, 255, 0.4);
+}
+
 .iz-exp-shoot-a { left: 8%; top: 20%; }
 .iz-exp-shoot-b { right: 4%; top: 54%; animation-delay: 4.4s; transform: rotate(18deg) translateX(-180px); }
 
@@ -623,13 +668,13 @@ section h2 {
 
 .iz-feature-card:not(.glass-card) {
   background:
-    radial-gradient(circle at 22% 0%, rgba(125, 211, 252, 0.07), transparent 32%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.52), rgba(8, 12, 22, 0.72)) !important;
-  border-color: rgba(148, 163, 184, 0.14) !important;
+    radial-gradient(circle at 22% 0%, rgba(125, 211, 252, 0.05), transparent 32%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.85), rgba(3, 5, 10, 0.96)) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
   box-shadow:
-    0 16px 38px -22px rgba(0, 0, 0, 0.75),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(12px);
+    0 16px 38px -22px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
 }
 
 .iz-feature-card::before {
@@ -737,29 +782,13 @@ section h2 {
 }
 
 @keyframes iz-section-pattern-drift {
-  from { background-position: 0 0, 0 0, 0 0; }
-  to { background-position: 78px 78px, 78px 78px, 34px 34px; }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-78px, -78px, 0); }
 }
 
 @keyframes iz-hero-sky-drift {
-  from {
-    background-position:
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0;
-  }
-  to {
-    background-position:
-      180px 120px,
-      -160px 220px,
-      220px -180px,
-      -120px -140px,
-      0 0,
-      0 0;
-  }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-40px, 40px, 0); }
 }
 
 @keyframes iz-cosmic-star {
