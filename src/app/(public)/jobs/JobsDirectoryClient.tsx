@@ -13,10 +13,19 @@ const InAppApplyModal = dynamic(
 );
 import { JobSummary, DepartmentSummary } from "@/types";
 
+import { HeroSystemsCanvas } from "@/components/public/landing/HeroSystemsCanvas";
+
 export function JobsDirectoryClient() {
   const [jobs, setJobs] = useState<JobSummary[]>([]);
   const [departments, setDepartments] = useState<DepartmentSummary[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showBackground, setShowBackground] = useState(false);
+
+  useEffect(() => {
+    // Delay canvas render slightly to prioritize LCP
+    const timer = setTimeout(() => setShowBackground(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Filters State
   const [search, setSearch] = useState("");
@@ -57,7 +66,16 @@ export function JobsDirectoryClient() {
   }, [fetchJobs]);
 
   return (
-    <div className="py-12 sm:py-20 px-6 max-w-7xl mx-auto min-h-screen">
+    <div className="relative py-12 sm:py-20 px-6 max-w-7xl mx-auto min-h-screen">
+      {/* Background Grid & Canvas matching Homepage */}
+      <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-[0.05] [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
+      
+      {showBackground && (
+        <div className="pointer-events-none fixed inset-x-[-8%] top-0 bottom-[10%] -z-10 overflow-hidden opacity-80">
+          <HeroSystemsCanvas />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,8,15,0.4),rgba(6,8,15,0.85)_60%,rgba(6,8,15,1)_100%)]" />
+        </div>
+      )}
       {/* Back Link */}
       <div className="mb-6">
         <Link
@@ -71,9 +89,12 @@ export function JobsDirectoryClient() {
 
       {/* Page Header */}
       <div className="max-w-3xl mb-12 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-          <span>Open Positions & Internships</span>
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-slate-300 text-xs font-bold tracking-widest shadow-lg backdrop-blur-2xl">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-20" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+          </span>
+          <span className="text-white uppercase">Open Positions & Internships</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
           Find your next role at <span className="text-gradient-primary">IZIES</span>.

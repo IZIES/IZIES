@@ -66,23 +66,26 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="iz-downstream-section iz-depth-9 relative z-10 pt-24 pb-8 px-6 overflow-hidden">
+    <section id="contact" className="iz-downstream-section iz-depth-9 relative z-10 pt-24 pb-4 px-6 overflow-hidden">
       <SectionExperience variant="contact" />
       <div className="max-w-4xl mx-auto space-y-12 relative z-10">
         <p className="text-center text-sm text-slate-300">
           Remote digital engineering · India &amp; international · 24×7 service availability
           <br />
-          <a href={`mailto:${BUSINESS_EMAIL}`} className="text-indigo-300 hover:text-white">{BUSINESS_EMAIL}</a>
+          <a href={`mailto:${BUSINESS_EMAIL}`} className="text-cyan-400 hover:text-cyan-300 transition-colors">{BUSINESS_EMAIL}</a>
         </p>
         <motion.div className="text-center space-y-4" {...revealMotion}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-            <Mail className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Let’s Connect</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest bg-white/[0.03] text-cyan-400 border border-white/10 shadow-lg backdrop-blur-2xl">
+            <Mail className="w-3.5 h-3.5" />
+            <span className="uppercase">Let’s Connect</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Have an Idea? Let’s Build It Together.
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+            Have an Idea?{" "}
+            <span className="bg-gradient-to-r from-cyan-400 via-indigo-300 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(34,211,238,0.3)]">
+              Let’s Build It Together.
+            </span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Tell us what you want to build, improve or automate. Our team will help you identify the right technology and development approach.
           </p>
         </motion.div>

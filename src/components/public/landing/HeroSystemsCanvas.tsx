@@ -118,7 +118,8 @@ export function HeroSystemsCanvas() {
     const streams = createStreams();
     const stars = createStars(window.innerWidth < 768 ? 34 : 66);
     const comets = createComets();
-    const pointer = { x: 0.62, y: 0.42, active: false };
+    const pointer = { x: 0.62, y: 0.42, px: -1000, py: -1000, active: false, ripple: 0 };
+    const trail: { x: number; y: number; life: number }[] = [];
     const scroll = { y: window.scrollY || 0 };
 
     const resize = () => {
@@ -349,39 +350,52 @@ export function HeroSystemsCanvas() {
             let strokeStyle: string | CanvasGradient = `rgba(${baseColor}, ${alpha})`;
             let isGlowing = false;
 
-            // Apply traveling glow directly to the base line
+            // Check distance to mouse for "Network Injection" glow
+            const distToMouse = Math.hypot(positions[i].x - pointer.px, positions[i].y - pointer.py);
+            let mouseGlowFactor = 0;
+            if (pointer.active && distToMouse < 220) {
+              mouseGlowFactor = Math.pow(1 - distToMouse / 220, 2); // Exponential dropoff
+            }
+
+            // Apply traveling glow directly to the base line (No fade, full brightness top to bottom)
             if ((i + j) % 12 === 0) {
               const sparkProgress = (time * 0.00025 + i * 0.15 + j * 0.05) % 1;
-              const sparkFade = Math.sin(sparkProgress * Math.PI); 
+              const sparkFade = 1.0; // No fading, always full intensity
 
-              if (sparkFade > 0.1) {
-                isGlowing = true;
-                const startNode = positions[i].y < positions[j].y ? positions[i] : positions[j];
-                const endNode = positions[i].y < positions[j].y ? positions[j] : positions[i];
+              isGlowing = true;
+              const startNode = positions[i].y < positions[j].y ? positions[i] : positions[j];
+              const endNode = positions[i].y < positions[j].y ? positions[j] : positions[i];
 
-                const grad = context.createLinearGradient(startNode.x, startNode.y, endNode.x, endNode.y);
-                const startStop = Math.max(0, sparkProgress - 0.15);
-                const endStop = Math.min(1, sparkProgress + 0.15);
+              const grad = context.createLinearGradient(startNode.x, startNode.y, endNode.x, endNode.y);
+              const startStop = Math.max(0, sparkProgress - 0.15);
+              const endStop = Math.min(1, sparkProgress + 0.15);
 
-                grad.addColorStop(0, `rgba(${baseColor}, ${alpha})`);
-                if (startStop > 0) grad.addColorStop(startStop, `rgba(${baseColor}, ${alpha})`);
-                
-                // The glowing segment
-                grad.addColorStop(sparkProgress, `rgba(16, 255, 160, ${sparkFade})`);
-                
-                if (endStop < 1) grad.addColorStop(endStop, `rgba(${baseColor}, ${alpha})`);
-                grad.addColorStop(1, `rgba(${baseColor}, ${alpha})`);
+              grad.addColorStop(0, `rgba(${baseColor}, ${alpha})`);
+              if (startStop > 0) grad.addColorStop(startStop, `rgba(${baseColor}, ${alpha})`);
+              
+              // The glowing segment (Pure brightness without fading)
+              grad.addColorStop(sparkProgress, `rgba(16, 255, 160, ${sparkFade})`);
+              grad.addColorStop(sparkProgress, `rgba(255, 255, 255, ${sparkFade})`); // White core
+              
+              if (endStop < 1) grad.addColorStop(endStop, `rgba(${baseColor}, ${alpha})`);
+              grad.addColorStop(1, `rgba(${baseColor}, ${alpha})`);
 
-                strokeStyle = grad;
-              }
+              strokeStyle = grad;
+            }
+
+            // Apply Mouse Network Injection Glow
+            if (mouseGlowFactor > 0) {
+              isGlowing = true;
+              const injectionAlpha = Math.min(1, alpha + mouseGlowFactor * 1.5); // Much brighter
+              strokeStyle = `rgba(34, 211, 238, ${injectionAlpha})`; 
             }
 
             context.strokeStyle = strokeStyle;
-            context.lineWidth = 1.15;
+            context.lineWidth = mouseGlowFactor > 0 ? 1.5 + mouseGlowFactor * 1.5 : 1.15;
             
             if (isGlowing) {
-              context.shadowColor = "rgba(16, 255, 160, 1)";
-              context.shadowBlur = 12;
+              context.shadowColor = mouseGlowFactor > 0 ? "rgba(34, 211, 238, 1)" : "rgba(16, 255, 160, 1)";
+              context.shadowBlur = mouseGlowFactor > 0 ? 25 : 12; // Massive glow near mouse
             }
 
             context.beginPath();
@@ -425,6 +439,67 @@ export function HeroSystemsCanvas() {
       context.fillStyle = gradient;
       context.fillRect(0, 0, width, height);
       drawComets(time);
+      
+      // --- DRAW MOUSE EFFECTS ---
+      
+      // 1. Plasma Trail
+      if (trail.length > 0) {
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        
+        for (let i = 0; i < trail.length - 1; i++) {
+          const p = trail[i];
+          const nextP = trail[i + 1];
+          
+          p.life -= 0.04; // Fade speed
+          
+          if (p.life <= 0) continue;
+          
+          const trailAlpha = Math.pow(p.life, 2);
+          const trailWidth = p.life * 5; // Trail thickness
+          
+          context.beginPath();
+          context.moveTo(p.x, p.y);
+          context.lineTo(nextP.x, nextP.y);
+          
+          // Outer Neon Cyan Glow (Extreme Light)
+          context.strokeStyle = `rgba(34, 211, 238, ${trailAlpha})`;
+          context.lineWidth = trailWidth;
+          context.shadowColor = "rgba(34, 211, 238, 1)";
+          context.shadowBlur = 24;
+          context.stroke();
+          context.stroke(); // Double stroke for pure brightness
+          
+          // Inner White Core
+          context.strokeStyle = `rgba(255, 255, 255, ${trailAlpha})`;
+          context.lineWidth = trailWidth * 0.4;
+          context.shadowBlur = 10; // Extra white glow
+          context.stroke();
+        }
+        
+        // Remove dead points
+        while (trail.length > 0 && trail[0].life <= 0) {
+          trail.shift();
+        }
+      }
+
+      // 2. Click Shockwave Ripple
+      if (pointer.ripple > 0) {
+        context.beginPath();
+        const rippleRadius = (1 - pointer.ripple) * 350; // Expands outward
+        context.arc(pointer.px, pointer.py, rippleRadius, 0, Math.PI * 2);
+        
+        context.strokeStyle = `rgba(34, 211, 238, ${pointer.ripple * 0.8})`;
+        context.lineWidth = pointer.ripple * 8;
+        context.shadowColor = "rgba(34, 211, 238, 1)";
+        context.shadowBlur = 30;
+        context.stroke();
+        context.stroke(); // Double stroke for explosion brightness
+        
+        context.shadowBlur = 0;
+        pointer.ripple -= 0.03; // Ripple fade speed
+        if (pointer.ripple < 0) pointer.ripple = 0;
+      }
     };
 
     const animate = (time: number) => {
@@ -446,7 +521,16 @@ export function HeroSystemsCanvas() {
       const rect = canvas.getBoundingClientRect();
       pointer.x = (event.clientX - rect.left) / rect.width;
       pointer.y = (event.clientY - rect.top) / rect.height;
+      pointer.px = event.clientX - rect.left;
+      pointer.py = event.clientY - rect.top;
       pointer.active = true;
+
+      // Add to plasma trail
+      trail.push({ x: pointer.px, y: pointer.py, life: 1.0 });
+    };
+
+    const handlePointerDown = () => {
+      pointer.ripple = 1.0; // Trigger shockwave
     };
 
     const handlePointerLeave = () => {
@@ -473,6 +557,7 @@ export function HeroSystemsCanvas() {
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerdown", handlePointerDown);
     window.addEventListener("pointerleave", handlePointerLeave);
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -481,6 +566,7 @@ export function HeroSystemsCanvas() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("pointerleave", handlePointerLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
@@ -490,7 +576,7 @@ export function HeroSystemsCanvas() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 h-full w-full opacity-100 [mask-image:radial-gradient(ellipse_at_58%_46%,black_0%,black_62%,transparent_92%)]"
+      className="absolute inset-0 h-full w-full opacity-100"
     />
   );
 }

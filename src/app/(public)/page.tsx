@@ -49,8 +49,7 @@ export default function HomePage() {
 
       <div className="relative min-h-screen text-slate-100 overflow-x-hidden selection:bg-cyan-500/20 selection:text-cyan-300">
         
-        {/* Top-to-Bottom Fade Gradient: slowly darkens the cosmic background as user scrolls down */}
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-transparent via-[#04060A]/60 to-[#04060A]" />
+        {/* Removed fade gradient so canvas seamlessly extends into the Footer */}
 
       {/* 1-2. Connected Hero and Intro Scene */}
       <div className="relative z-10 overflow-hidden">
