@@ -9,6 +9,11 @@ export async function Footer() {
     where: { id: "default" },
   });
   const contactEmail = settings?.contactEmail || BUSINESS_EMAIL;
+  const websiteUrl =
+    settings?.globeUrl && !settings.globeUrl.includes("izies.vercel.app")
+      ? settings.globeUrl
+      : "https://izies.in";
+
   return (
     <footer className="border-t border-white/[0.08] bg-[#05070D] pt-16 pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-6">
@@ -136,9 +141,9 @@ export async function Footer() {
                   <Twitter className="w-4 h-4" />
                 </a>
               )}
-              {settings?.globeUrl && (
+              {websiteUrl && (
                 <a
-                  href={settings.globeUrl}
+                  href={websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.06] text-slate-400 hover:text-white transition-colors"
@@ -215,19 +220,19 @@ export async function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <span className="hover:text-white transition-colors cursor-pointer">
+                <Link href="/privacy" className="hover:text-white transition-colors">
                   Privacy Policy
-                </span>
+                </Link>
               </li>
               <li>
-                <span className="hover:text-white transition-colors cursor-pointer">
+                <Link href="/terms" className="hover:text-white transition-colors">
                   Terms of Service
-                </span>
+                </Link>
               </li>
               <li>
-                <span className="hover:text-white transition-colors cursor-pointer">
+                <Link href="/security" className="hover:text-white transition-colors">
                   Security Standards
-                </span>
+                </Link>
               </li>
             </ul>
           </div>

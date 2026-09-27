@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Layers3, ArrowRight, CheckCheck, ShieldCheck } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 interface DeliveryModelsSectionProps {
   onScrollTo?: (id: string) => void;
@@ -71,7 +72,8 @@ export function DeliveryModelsSection({ onScrollTo }: DeliveryModelsSectionProps
   ];
 
   return (
-    <section id="models" className="py-28 px-6 border-t border-white/[0.08] bg-gradient-to-b from-[#06080F] via-[#090D1A] to-[#06080F] relative overflow-hidden z-10">
+    <section id="models" className="iz-downstream-section iz-depth-1 py-28 px-6 relative overflow-hidden z-10">
+      <SectionExperience variant="pipeline" />
       {/* Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-indigo-500/10 blur-[180px] rounded-full pointer-events-none" />
 
@@ -108,7 +110,7 @@ export function DeliveryModelsSection({ onScrollTo }: DeliveryModelsSectionProps
             <div
               key={idx}
               onClick={() => setActiveModel(idx)}
-              className={`glass-card p-8 rounded-3xl border transition-all duration-300 cursor-pointer space-y-5 flex flex-col justify-between ${
+              className={`iz-feature-card glass-card p-8 rounded-3xl border transition-all duration-300 cursor-pointer space-y-5 flex flex-col justify-between ${
                 activeModel === idx
                   ? "border-indigo-500 bg-indigo-950/20 shadow-xl shadow-indigo-600/15 ring-1 ring-indigo-500/40"
                   : "border-white/[0.08] hover:border-white/20"
@@ -148,7 +150,7 @@ export function DeliveryModelsSection({ onScrollTo }: DeliveryModelsSectionProps
         </div>
 
         {/* Technology & Infrastructure Standards Banner */}
-        <div className="glass-card p-8 rounded-3xl border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="space-y-2 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 text-indigo-300 text-xs font-bold uppercase tracking-wider">
               <ShieldCheck className="w-4 h-4 text-indigo-400" />

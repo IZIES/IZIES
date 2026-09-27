@@ -1,9 +1,13 @@
 import { Sparkles } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 export function CompanyIntroSection() {
   return (
-    <section className="relative z-10 py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center space-y-6">
+    <section className="relative z-10 -mt-24 pt-40 pb-20 px-6 overflow-hidden">
+      <SectionExperience variant="scan" mode="accent" />
+      <div aria-hidden="true" className="iz-intro-shooting-star iz-intro-shooting-star-a" />
+      <div aria-hidden="true" className="iz-intro-shooting-star iz-intro-shooting-star-b" />
+      <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
           <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
           <span>Digital Transformation</span>
@@ -19,22 +23,22 @@ export function CompanyIntroSection() {
 
         {/* Quick Stats Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 max-w-3xl mx-auto text-left">
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
+          <div className="iz-feature-card p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
             <p className="text-xl font-bold text-white font-mono">Plan</p>
             <p className="text-xs text-indigo-300 font-semibold">Discovery & Scope</p>
             <p className="text-[10px] text-slate-400">Goals, users and requirements</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
+          <div className="iz-feature-card p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
             <p className="text-xl font-bold text-white font-mono">Build</p>
             <p className="text-xs text-emerald-300 font-semibold">Design & Development</p>
             <p className="text-[10px] text-slate-400">Working software in milestones</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
+          <div className="iz-feature-card p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
             <p className="text-xl font-bold text-white font-mono">Validate</p>
             <p className="text-xs text-purple-300 font-semibold">Testing & Review</p>
             <p className="text-[10px] text-slate-400">User journeys and release checks</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
+          <div className="iz-feature-card p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-0.5">
             <p className="text-xl font-bold text-white font-mono">Improve</p>
             <p className="text-xs text-amber-300 font-semibold">Support & Iteration</p>
             <p className="text-[10px] text-slate-400">Maintenance and next steps</p>

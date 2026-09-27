@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Sparkle, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { SectionExperience } from "./SectionExperience";
 
 export function LabsInnovationSection() {
   const [labsEmail, setLabsEmail] = useState("");
@@ -17,7 +18,8 @@ export function LabsInnovationSection() {
   };
 
   return (
-    <section id="labs" className="relative z-10 py-24 px-6">
+    <section id="labs" className="iz-downstream-section iz-depth-6 relative z-10 py-24 px-6 overflow-hidden">
+      <SectionExperience variant="labs" />
       <div className="max-w-4xl mx-auto rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-[#0D1224] via-[#0A0E1A] to-[#070912] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
         {/* Subtle Ambient Background Mesh */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 blur-[90px] rounded-full pointer-events-none" />

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { capabilityContent } from "@/lib/capabilities";
+import { SectionExperience } from "./SectionExperience";
 import {
     Cpu,
     Brain,
@@ -162,8 +163,10 @@ export function CapabilitiesSection() {
       : capabilities.filter((c) => c.category === activeCapCategory);
 
   return (
-    <section id="capabilities" className="py-28 px-6 max-w-7xl mx-auto relative z-10">
-      <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+    <section id="capabilities" className="iz-capabilities-section py-28 px-6 relative z-10 overflow-hidden">
+      <SectionExperience variant="constellation" />
+      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="text-center max-w-3xl mx-auto mb-14 space-y-4 relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
           <Cpu className="w-3.5 h-3.5 text-indigo-400" />
           <span>From Planning to Ongoing Support</span>
@@ -210,14 +213,14 @@ export function CapabilitiesSection() {
       </div>
 
       {/* Capability Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
         {filteredCapabilities.map((cap) => {
           const Icon = cap.icon;
           return (
             <Link key={cap.id} href={`/services/${cap.slug}`} className="block">
               <article
                 id={`service-${cap.id}`}
-                className={`glass-card p-8 rounded-3xl border border-white/[0.08] ${cap.border} space-y-5 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1`}
+                className={`iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] ${cap.border} space-y-5 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1`}
               >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -252,6 +255,7 @@ export function CapabilitiesSection() {
             </Link>
           );
         })}
+      </div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 
 import { BUSINESS_DESCRIPTION, businessMetadata, serviceCatalog, jsonLd } from "@/lib/seo";
 import { HeroSection } from "@/components/public/landing/HeroSection";
+import { HeroSystemsCanvas } from "@/components/public/landing/HeroSystemsCanvas";
 import { CompanyIntroSection } from "@/components/public/landing/CompanyIntroSection";
 import { CapabilitiesSection } from "@/components/public/landing/CapabilitiesSection";
 import { DeliveryModelsSection } from "@/components/public/landing/DeliveryModelsSection";
@@ -28,27 +29,29 @@ export default function HomePage() {
     <div className="relative min-h-screen bg-[#04060A] text-slate-100 overflow-x-hidden selection:bg-cyan-500/20 selection:text-cyan-300">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(serviceCatalog("/")) }} />
       {/* Global Background Synchronized Grid & Radial Glow */}
-      <div className="absolute inset-0 z-0 bg-[#04060A] overflow-hidden">
+      <div className="fixed inset-0 z-0 bg-[#04060A] overflow-hidden pointer-events-none">
+        <HeroSystemsCanvas />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_23%_28%,rgba(5,7,15,0.5),rgba(5,7,15,0.76)_50%,rgba(4,6,10,0.95)_100%)]" />
         {/* Dynamic Abstract Mesh Gradients synced to Logo Colors (Purple/Blue/Cyan) */}
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-[40%] right-[-10%] w-[30%] h-[50%] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-20%] left-[20%] w-[50%] h-[40%] bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/[0.045] blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-[40%] right-[-10%] w-[30%] h-[50%] bg-blue-600/[0.045] blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-20%] left-[20%] w-[50%] h-[40%] bg-cyan-600/[0.045] blur-[130px] rounded-full pointer-events-none" />
         
         {/* Subtle Overlay Grid */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.115] pointer-events-none" />
       </div>
 
-      {/* 1. Hero Section */}
-      <div className="relative z-10">
-        <HeroSection />
-      </div>
-
-      <div className="relative z-10 flex flex-col">
-        {/* 2. Short Company Intro */}
+      {/* 1-2. Connected Hero and Intro Scene */}
+      <div className="relative z-10 overflow-hidden">
+        <div className="relative z-10">
+          <HeroSection showBackground={false} />
+        </div>
         <FadeInScroll>
           <CompanyIntroSection />
         </FadeInScroll>
+      </div>
 
+      <div className="relative z-10 flex flex-col">
         {/* 3. Specialized Capabilities */}
         <FadeInScroll>
           <CapabilitiesSection />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Terminal } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 export function ApproachSection() {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -52,8 +53,9 @@ export function ApproachSection() {
   ];
 
   return (
-    <section id="approach" className="relative z-10 py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="approach" className="iz-downstream-section iz-depth-4 relative z-10 py-24 px-6 overflow-hidden">
+      <SectionExperience variant="protocol" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
             <Terminal className="w-3.5 h-3.5" />
@@ -73,7 +75,7 @@ export function ApproachSection() {
             <div
               key={s.step}
               onClick={() => setActiveStep(idx)}
-              className={`glass-card p-7 rounded-3xl border transition-all cursor-pointer space-y-3 ${
+              className={`iz-feature-card glass-card p-7 rounded-3xl border transition-all cursor-pointer space-y-3 ${
                 activeStep === idx
                   ? "border-indigo-500 bg-indigo-950/20 shadow-xl shadow-indigo-600/15 ring-1 ring-indigo-500/40"
                   : "border-white/[0.08] hover:border-white/20"

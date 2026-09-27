@@ -1,9 +1,12 @@
 import { Compass, Sparkles } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-28 px-6 max-w-7xl mx-auto relative z-10">
-      <div className="max-w-4xl mx-auto space-y-12 text-center sm:text-left">
+    <section id="about" className="iz-downstream-section iz-depth-7 py-28 px-6 relative z-10 overflow-hidden">
+      <SectionExperience variant="story" />
+      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto space-y-12 text-center sm:text-left relative z-10">
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
             <Compass className="w-3.5 h-3.5 text-indigo-400" />
@@ -19,7 +22,7 @@ export function AboutSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
           {/* Mission */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
               <TargetIcon />
               <span>Our Mission</span>
@@ -30,7 +33,7 @@ export function AboutSection() {
           </div>
 
           {/* Vision */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
               <Sparkles className="w-4 h-4" />
               <span>Our Vision</span>
@@ -40,6 +43,7 @@ export function AboutSection() {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

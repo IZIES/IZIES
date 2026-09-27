@@ -3,6 +3,8 @@
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { HeroSystemsCanvas } from "./HeroSystemsCanvas";
 import {
   Sparkles,
   ArrowRight,
@@ -37,6 +39,7 @@ import {
 
 interface HeroSectionProps {
   onScrollTo?: (id: string) => void;
+  showBackground?: boolean;
 }
 
 const ICON_MAP: Record<string, any> = {
@@ -466,6 +469,7 @@ const FALLBACK_DOMAINS: TechDomain[] = [
 
 const RING_RADIUS = "38%";
 const RING_RADIUS_SM = "42%";
+const SOFT_EASE = [0.16, 1, 0.3, 1] as const;
 
 const POSITION_STYLES: Record<
   string,
@@ -613,12 +617,28 @@ const COLOR_STYLES: Record<
   },
 };
 
-export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
+export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionProps = {}) {
   const [domains, setDomains] = useState<TechDomain[]>(FALLBACK_DOMAINS);
   const [activeDomainId, setActiveDomainId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const activeTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [popoverStyle, setPopoverStyle] = useState<React.CSSProperties>({});
+  const shouldReduceMotion = useReducedMotion();
+  const heroMotion = shouldReduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 18 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.58, ease: SOFT_EASE },
+      };
+  const heroChildMotion = (delay: number) =>
+    shouldReduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 12 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5, delay, ease: SOFT_EASE },
+        };
 
   useEffect(() => {
     fetch("/api/hero-tech")
@@ -741,11 +761,18 @@ export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
   return (
     <section className="relative pt-28 pb-20 sm:pt-36 sm:pb-28 px-6 max-w-7xl mx-auto z-10">
       {/* Background Grid & Gradient */}
-      <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-[0.03] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+      <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-[0.075] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+
+      {showBackground && (
+        <div className="pointer-events-none absolute inset-x-[-8%] top-0 bottom-[-12%] -z-10 overflow-hidden">
+          <HeroSystemsCanvas />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_23%_36%,rgba(5,7,15,0.34),rgba(5,7,15,0.68)_50%,rgba(4,6,10,0.93)_100%)]" />
+        </div>
+      )}
 
       {/* Floating Ambient Background Micro-Glyphs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden -z-10 select-none">
-        <div className="absolute top-36 left-12 p-3 rounded-2xl bg-white/[0.02] border border-white/[0.05] text-slate-500/40 font-mono text-xs hidden lg:flex items-center gap-2 backdrop-blur-xs">
+        <div className="absolute top-20 left-[48%] p-3 rounded-2xl bg-white/[0.015] border border-white/[0.04] text-slate-500/25 font-mono text-xs hidden 2xl:flex items-center gap-2 backdrop-blur-xs">
           <Code className="w-3.5 h-3.5 text-indigo-400/40" />
           <span>const izies = new DigitalOS();</span>
         </div>
@@ -755,7 +782,7 @@ export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
           <span>01101001 01011010</span>
         </div>
 
-        <div className="absolute top-[500px] left-8 p-3 rounded-2xl bg-white/[0.02] border border-white/[0.05] text-slate-500/40 font-mono text-xs hidden md:flex items-center gap-2">
+        <div className="absolute top-[520px] left-[52%] p-3 rounded-2xl bg-white/[0.015] border border-white/[0.04] text-slate-500/25 font-mono text-xs hidden xl:flex items-center gap-2">
           <Brain className="w-3.5 h-3.5 text-purple-400/40" />
           <span>embeddings: 1536-dim vector</span>
         </div>
@@ -775,73 +802,103 @@ export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
         {/* Left Hero Content */}
-        <div className="lg:col-span-6 space-y-7 text-center lg:text-left">
+        <motion.div
+          className="lg:col-span-6 space-y-7 text-center lg:text-left"
+          {...heroMotion}
+        >
           {/* Small Kicker Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold shadow-inner shadow-indigo-500/10 backdrop-blur-md">
+          <motion.div
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold shadow-inner shadow-indigo-500/10 backdrop-blur-md"
+            {...heroChildMotion(0.06)}
+          >
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>Websites • Apps • AI • Automation</span>
-          </div>
+          </motion.div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.06]">
-            Digital Engineering for Your{" "}
+          <motion.h1
+            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.06]"
+            {...heroChildMotion(0.12)}
+          >
+            IZIES Digital Engineering for{" "}
             <span className="bg-gradient-to-r from-violet-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(129,140,248,0.3)]">
               Business
             </span>
             .
-          </h1>
+          </motion.h1>
 
           {/* Description */}
-          <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-normal">
+          <motion.p
+            className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-normal"
+            {...heroChildMotion(0.18)}
+          >
             IZIES provides digital engineering and software development for businesses
             in India and international teams. From SaaS products and AI integrations
             to workflow automation, we help you plan, build and improve the tools
             your business needs.
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
-            <button
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1"
+            {...heroChildMotion(0.24)}
+          >
+            <motion.button
               onClick={() => handleScroll("contact")}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold shadow-xl shadow-indigo-600/30 text-sm transition-all active:scale-[0.98] cursor-pointer"
+              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
             >
               <span className="hidden sm:inline">Start a Project</span>
               <span className="sm:hidden">Start Project</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={() => handleScroll("capabilities")}
               className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 rounded-2xl text-sm text-slate-300 border border-white/10 hover:bg-white/[0.05] hover:text-white transition-all cursor-pointer backdrop-blur-xl"
+              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
             >
               <span className="hidden sm:inline">Explore Capabilities</span>
               <span className="sm:hidden">Capabilities</span>
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={() => handleScroll("models")}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl text-sm font-bold text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all cursor-pointer"
+              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
             >
               <span className="hidden sm:inline">How We Partner</span>
               <span className="sm:hidden">Partner Models</span>
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Supporting Micro-Proof */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-2 text-xs text-slate-400">
+          <motion.div
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-2 text-xs text-slate-400"
+            {...heroChildMotion(0.3)}
+          >
             <span className="flex items-center gap-1.5 text-slate-300 font-medium">
               <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-              <span>From the first idea to a production-ready solution.</span>
+              <span>Discovery, design, build, automation, cloud and maintenance.</span>
             </span>
             <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Clear Scope & Direct Team Communication</span>
             </span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right Hero Visual: Large Cinematic Abstract Animated Ecosystem Centered on IZIES Logo */}
-        <div className="lg:col-span-6 flex justify-center" ref={containerRef}>
+        <motion.div
+          className="lg:col-span-6 flex justify-center"
+          ref={containerRef}
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96 }}
+          animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.18, ease: SOFT_EASE }}
+        >
           <div className="relative w-full max-w-[540px] sm:max-w-[600px] aspect-square flex items-center justify-center p-2 sm:p-8">
             {/* Dynamic Ambient Background Glows */}
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-blue-500/5 to-cyan-500/10 blur-[80px] rounded-full pointer-events-none" />
@@ -1065,7 +1122,7 @@ export function HeroSection({ onScrollTo }: HeroSectionProps = {}) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { ShieldCheck, Check } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 export function WhyChooseUsSection() {
   const values = [
@@ -13,8 +14,10 @@ export function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="py-28 px-6 max-w-7xl mx-auto relative z-10">
-      <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <section className="iz-downstream-section iz-depth-5 py-28 px-6 relative z-10 overflow-hidden">
+      <SectionExperience variant="trust" />
+      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
           <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
           <span>The IZIES Advantage</span>
@@ -27,11 +30,11 @@ export function WhyChooseUsSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
         {values.map((item, idx) => (
           <div
             key={idx}
-            className="glass-card p-6 rounded-3xl border border-white/[0.08] hover:border-blue-500/40 space-y-3"
+            className="iz-feature-card glass-card p-6 rounded-3xl border border-white/[0.08] hover:border-blue-500/40 space-y-3"
           >
             <div className="h-8 w-8 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xs">
               <Check className="w-4 h-4" />
@@ -40,6 +43,7 @@ export function WhyChooseUsSection() {
             <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { formatImageUrl } from "@/lib/utils";
 import Link from "next/link";
+import { SectionExperience } from "./SectionExperience";
 
 export async function LeadershipSection() {
   const teamMembers = await prisma.teamMember.findMany({
@@ -22,8 +23,9 @@ export async function LeadershipSection() {
       .toUpperCase();
 
   return (
-    <section id="leadership" className="relative z-10 py-24 px-6">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="leadership" className="iz-downstream-section iz-depth-8 relative z-10 py-24 px-6 overflow-hidden">
+      <SectionExperience variant="leadership" />
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
             <Users className="w-3.5 h-3.5 text-purple-400" />
@@ -50,7 +52,7 @@ export async function LeadershipSection() {
             return (
               <div
                 key={leader.id}
-                className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 group flex flex-col items-center text-center space-y-6 max-w-sm"
+                className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 group flex flex-col items-center text-center space-y-6 max-w-sm"
               >
                 {/* Avatar */}
                 <div

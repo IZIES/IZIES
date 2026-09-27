@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+const SOFT_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function FadeInScroll({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const element = ref.current;
-    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    let animation: Animation | undefined;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      animation = element.animate(
-        [{ opacity: 0, transform: "translateY(30px)" }, { opacity: 1, transform: "translateY(0)" }],
-        { duration: 800, delay: delay * 1000, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
-      );
-      observer.disconnect();
-    });
-    observer.observe(element);
-    return () => { observer.disconnect(); animation?.cancel(); };
-  }, [delay]);
-
-  return <div ref={ref}>{children}</div>;
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18, margin: "0px 0px -80px 0px" }}
+      transition={{
+        duration: 0.42,
+        delay,
+        ease: SOFT_EASE,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 }

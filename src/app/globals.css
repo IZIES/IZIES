@@ -72,18 +72,148 @@ body {
 }
 
 .glass-card {
-  background: linear-gradient(180deg, rgba(14, 19, 35, 0.85) 0%, rgba(8, 12, 22, 0.95) 100%);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(125, 211, 252, 0.08), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(168, 85, 247, 0.08), transparent 38%),
+    linear-gradient(180deg, rgba(14, 19, 35, 0.64) 0%, rgba(8, 12, 22, 0.82) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow:
+    0 20px 44px -18px rgba(0, 0, 0, 0.72),
+    0 0 34px rgba(34, 211, 238, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 24%, rgba(255, 255, 255, 0.055), transparent 44%),
+    linear-gradient(to bottom, rgba(125, 211, 252, 0.045), transparent 34%);
+  opacity: 0;
+  transform: translateX(-28%);
+  transition: opacity 0.35s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
 .glass-card:hover {
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(125, 211, 252, 0.26);
+  box-shadow:
+    0 30px 64px -20px rgba(0, 0, 0, 0.78),
+    0 0 42px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
   transform: translateY(-3px);
+}
+
+.glass-card:hover::after {
+  opacity: 1;
+  transform: translateX(18%);
+}
+
+.inline-flex.rounded-full.border[class*="bg-indigo-500"],
+.inline-flex.rounded-full.border[class*="bg-purple-500"] {
+  background:
+    linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(34, 211, 238, 0.055)),
+    rgba(8, 12, 24, 0.52);
+  border-color: rgba(129, 140, 248, 0.28);
+  box-shadow:
+    0 0 22px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+section h2 {
+  text-shadow:
+    0 0 28px rgba(125, 211, 252, 0.08),
+    0 0 54px rgba(129, 140, 248, 0.06);
+}
+
+.iz-capabilities-section .iz-section-experience {
+  opacity: 0.48;
+}
+
+.iz-capabilities-section .iz-section-experience::before,
+.iz-capabilities-section .iz-section-experience::after {
+  opacity: 0.14;
+}
+
+.iz-capabilities-section .iz-exp-flow,
+.iz-capabilities-section .iz-exp-grid,
+.iz-capabilities-section .iz-exp-beam,
+.iz-capabilities-section .iz-exp-ribbon,
+.iz-capabilities-section .iz-exp-window,
+.iz-capabilities-section .iz-exp-star,
+.iz-capabilities-section .iz-exp-shoot {
+  opacity: 0.16 !important;
+}
+
+.iz-capabilities-section .iz-exp-orbit {
+  opacity: 0.28;
+}
+
+.iz-capabilities-section .glass-card {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(99, 102, 241, 0.075), transparent 34%),
+    linear-gradient(180deg, rgba(12, 16, 30, 0.9), rgba(7, 10, 19, 0.95)) !important;
+  border-color: rgba(148, 163, 184, 0.16) !important;
+  box-shadow:
+    0 18px 42px -20px rgba(0, 0, 0, 0.82),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055) !important;
+}
+
+.iz-capabilities-section .glass-card::after {
+  opacity: 0 !important;
+}
+
+.iz-capabilities-section .glass-card:hover {
+  border-color: rgba(129, 140, 248, 0.36) !important;
+  box-shadow:
+    0 24px 54px -24px rgba(0, 0, 0, 0.86),
+    0 0 28px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.iz-capabilities-section .glass-card h3 {
+  color: rgba(255, 255, 255, 0.96);
+  text-shadow: 0 0 18px rgba(129, 140, 248, 0.1);
+}
+
+.iz-capabilities-section .glass-card p,
+.iz-capabilities-section .glass-card li {
+  color: rgba(203, 213, 225, 0.84);
+}
+
+.iz-capabilities-section .glass-card li span:last-child {
+  color: rgba(226, 232, 240, 0.86);
+}
+
+.iz-capabilities-section .glass-card [class*="h-12"][class*="w-12"] {
+  background:
+    radial-gradient(circle at 45% 25%, rgba(255, 255, 255, 0.12), transparent 34%),
+    rgba(15, 23, 42, 0.78) !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  box-shadow:
+    0 0 18px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.iz-capabilities-section .glass-card span[class*="rounded-full"][class*="border"] {
+  box-shadow: 0 0 14px rgba(129, 140, 248, 0.12);
+}
+
+.iz-capabilities-section button[aria-pressed="true"] {
+  box-shadow:
+    0 0 20px rgba(99, 102, 241, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+.iz-capabilities-section button[aria-pressed="false"] {
+  color: rgba(203, 213, 225, 0.72);
 }
 
 /* Radiant Gradients */
@@ -117,4 +247,558 @@ body {
 
 .border-gradient {
   border-image: linear-gradient(to right, rgba(139, 92, 246, 0.4), rgba(59, 130, 246, 0.1), rgba(255, 255, 255, 0.05)) 1;
+}
+
+/* Section-level cinematic accents for the public Digital OS experience */
+.iz-section-experience {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.9;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+}
+
+.iz-section-accent-only {
+  opacity: 0.72;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 78%, transparent 100%);
+}
+
+.iz-section-accent-only::before,
+.iz-section-accent-only::after {
+  display: none;
+}
+
+.iz-section-accent-only .iz-exp-star,
+.iz-section-accent-only .iz-exp-shoot {
+  display: none;
+}
+
+.iz-exp-canvas {
+  position: absolute;
+  inset: -12%;
+  opacity: 0.74;
+  pointer-events: none;
+}
+
+.iz-exp-canvas .absolute {
+  mask-image: radial-gradient(ellipse at 50% 48%, black 0%, black 70%, transparent 96%);
+}
+
+.iz-exp-canvas-shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 44%, rgba(5, 7, 15, 0.22), rgba(5, 7, 15, 0.62) 52%, rgba(4, 6, 10, 0.9) 100%);
+}
+
+.iz-section-experience::before,
+.iz-section-experience::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+}
+
+.iz-section-experience::before {
+  background:
+    radial-gradient(circle at 22% 36%, rgba(34, 211, 238, 0.07), transparent 28%),
+    radial-gradient(circle at 78% 58%, rgba(168, 85, 247, 0.06), transparent 30%),
+    linear-gradient(112deg, transparent 24%, rgba(125, 211, 252, 0.055) 46%, rgba(168, 85, 247, 0.04) 54%, transparent 72%);
+  filter: blur(10px);
+  opacity: 0.42;
+  transform: translate3d(-12%, 0, 0);
+  animation: iz-section-flow-light 13s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.iz-section-experience::after {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    radial-gradient(rgba(125, 211, 252, 0.12) 1px, transparent 1px);
+  background-size: 78px 78px, 78px 78px, 34px 34px;
+  mask-image: radial-gradient(circle at 50% 48%, black, transparent 70%);
+  opacity: 0.56;
+  transform: translate3d(0, 0, 0);
+  animation: iz-section-pattern-drift 20s linear infinite;
+}
+
+.iz-exp-hero-sky {
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(circle at 16% 28%, rgba(125, 211, 252, 0.12) 0 1px, transparent 2px),
+    radial-gradient(circle at 34% 64%, rgba(196, 181, 253, 0.11) 0 1px, transparent 2px),
+    radial-gradient(circle at 68% 22%, rgba(34, 211, 238, 0.13) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 72%, rgba(168, 85, 247, 0.12) 0 1px, transparent 2px),
+    radial-gradient(ellipse at 58% 42%, rgba(34, 211, 238, 0.09), transparent 36%),
+    radial-gradient(ellipse at 36% 64%, rgba(168, 85, 247, 0.08), transparent 38%);
+  background-size:
+    180px 180px,
+    220px 220px,
+    260px 260px,
+    190px 190px,
+    100% 100%,
+    100% 100%;
+  opacity: 0.66;
+  filter: saturate(1.15);
+  transform: translate3d(0, 0, 0);
+  animation: iz-hero-sky-drift 24s linear infinite;
+}
+
+.iz-exp-hero-sky::before,
+.iz-exp-hero-sky::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 9999px;
+  border: 1px dashed rgba(129, 140, 248, 0.08);
+  box-shadow:
+    0 0 80px rgba(34, 211, 238, 0.08),
+    inset 0 0 90px rgba(168, 85, 247, 0.045);
+  transform: rotate(-10deg);
+}
+
+.iz-exp-hero-sky::after {
+  inset: 20% 10%;
+  border-color: rgba(34, 211, 238, 0.07);
+  transform: rotate(12deg);
+}
+
+.iz-exp-flow {
+  position: absolute;
+  inset: -18%;
+  background:
+    linear-gradient(108deg, transparent 18%, rgba(34, 211, 238, 0.045) 38%, rgba(129, 140, 248, 0.06) 50%, rgba(168, 85, 247, 0.042) 60%, transparent 78%),
+    radial-gradient(ellipse at 52% 40%, rgba(125, 211, 252, 0.052), transparent 42%);
+  filter: blur(18px);
+  opacity: 0.38;
+  transform: translate3d(-18%, -2%, 0);
+  animation: iz-cosmic-flow-sweep 14s ease-in-out infinite;
+}
+
+.iz-exp-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: radial-gradient(circle at 50% 48%, black, transparent 68%);
+  opacity: 0.46;
+}
+
+.iz-exp-orbit {
+  position: absolute;
+  border: 1px solid rgba(129, 140, 248, 0.11);
+  border-radius: 9999px;
+  box-shadow: inset 0 0 42px rgba(59, 130, 246, 0.03), 0 0 42px rgba(99, 102, 241, 0.04);
+}
+
+.iz-exp-orbit-a {
+  width: 520px;
+  height: 520px;
+  right: -170px;
+  top: 12%;
+  animation: iz-orbit-drift 18s ease-in-out infinite alternate;
+}
+
+.iz-exp-orbit-b {
+  width: 360px;
+  height: 360px;
+  left: -140px;
+  bottom: 7%;
+  border-color: rgba(34, 211, 238, 0.14);
+  animation: iz-orbit-drift 22s ease-in-out infinite alternate-reverse;
+}
+
+.iz-exp-beam {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(125, 211, 252, 0.075) 48%, transparent 62%);
+  transform: translateX(-72%);
+  animation: iz-scan-beam 13s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  opacity: 0.4;
+}
+
+.iz-exp-pulse {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: rgb(129, 140, 248);
+  box-shadow: 0 0 14px rgba(129, 140, 248, 0.55), 0 0 32px rgba(34, 211, 238, 0.16);
+  animation: iz-node-pulse 3.8s ease-in-out infinite;
+}
+
+.iz-exp-pulse-a { left: 18%; top: 30%; }
+.iz-exp-pulse-b { right: 22%; top: 42%; animation-delay: 0.9s; background: rgb(34, 211, 238); }
+.iz-exp-pulse-c { left: 52%; bottom: 18%; animation-delay: 1.7s; background: rgb(168, 85, 247); }
+
+.iz-exp-window {
+  position: absolute;
+  width: 210px;
+  height: 118px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 36%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.48), rgba(2, 6, 23, 0.14));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  animation: iz-panel-float 7s ease-in-out infinite;
+  opacity: 0.58;
+}
+
+.iz-exp-window::before,
+.iz-exp-window::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(34, 211, 238, 0.1), rgba(129, 140, 248, 0.72), rgba(34, 211, 238, 0.06));
+}
+
+.iz-exp-window::before { top: 38px; }
+.iz-exp-window::after { top: 70px; width: 62%; }
+.iz-exp-window-a { right: 8%; top: 18%; }
+.iz-exp-window-b { left: 7%; bottom: 13%; animation-delay: 1.2s; transform: scale(0.82); }
+
+.iz-exp-ribbon {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(34, 211, 238, 0.24), rgba(168, 85, 247, 0.18), transparent);
+  animation: iz-ribbon-flow 5.5s ease-in-out infinite alternate;
+}
+
+.iz-exp-star {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0.64;
+  filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.42));
+  animation: iz-cosmic-star 4.8s ease-in-out infinite;
+}
+
+.iz-exp-star::before,
+.iz-exp-star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 9999px;
+  background: linear-gradient(to right, transparent, rgba(226, 232, 240, 0.9), transparent);
+  transform: translate(-50%, -50%);
+}
+
+.iz-exp-star::before {
+  width: 100%;
+  height: 1px;
+}
+
+.iz-exp-star::after {
+  width: 1px;
+  height: 100%;
+}
+
+.iz-exp-star-a { left: 12%; top: 28%; }
+.iz-exp-star-b { right: 14%; bottom: 24%; animation-delay: 1.7s; transform: scale(0.72); }
+
+.iz-exp-shoot {
+  position: absolute;
+  width: 180px;
+  height: 1px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, transparent, rgba(125, 211, 252, 0.48), rgba(255, 255, 255, 0.76));
+  box-shadow: 0 0 16px rgba(125, 211, 252, 0.32);
+  transform: rotate(28deg) translateX(-180px);
+  opacity: 0;
+  animation: iz-shooting-star 8.8s ease-in-out infinite;
+}
+
+.iz-exp-shoot-a { left: 8%; top: 20%; }
+.iz-exp-shoot-b { right: 4%; top: 54%; animation-delay: 4.4s; transform: rotate(18deg) translateX(-180px); }
+
+.iz-section-scan .iz-exp-flow {
+  opacity: 0.16;
+  background:
+    linear-gradient(108deg, transparent 14%, rgba(34, 211, 238, 0.026) 36%, rgba(129, 140, 248, 0.032) 51%, rgba(168, 85, 247, 0.024) 64%, transparent 82%),
+    radial-gradient(ellipse at 46% 36%, rgba(125, 211, 252, 0.03), transparent 44%);
+}
+.iz-section-scan::before { opacity: 0.2; }
+.iz-section-scan::after { opacity: 0.22; }
+.iz-section-scan .iz-exp-hero-sky { opacity: 0.28; }
+.iz-section-scan .iz-exp-grid { background-size: 48px 48px; opacity: 0.14; }
+.iz-section-scan .iz-exp-beam { opacity: 0.12; }
+.iz-section-scan .iz-exp-orbit { opacity: 0.32; }
+.iz-section-scan .iz-exp-window { opacity: 0.18; }
+.iz-section-scan .iz-exp-ribbon { opacity: 0.18; }
+.iz-section-scan .iz-exp-star {
+  opacity: 0.38;
+  filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.24));
+}
+.iz-section-scan .iz-exp-shoot {
+  display: none;
+}
+.iz-section-scan .iz-exp-shoot-b { display: none; }
+.iz-section-scan .iz-exp-star-a { left: 18%; top: 20%; }
+.iz-section-scan .iz-exp-star-b { right: 18%; bottom: 30%; }
+
+.iz-section-accent-only.iz-section-scan .iz-exp-beam { opacity: 0.16; }
+.iz-section-accent-only.iz-section-scan .iz-exp-orbit { opacity: 0.42; }
+.iz-section-accent-only.iz-section-scan .iz-exp-window { opacity: 0.3; }
+.iz-section-accent-only.iz-section-scan .iz-exp-ribbon { opacity: 0.22; }
+.iz-section-accent-only.iz-section-scan .iz-exp-pulse { opacity: 0.44; }
+
+.iz-intro-shooting-star {
+  position: absolute;
+  z-index: 0;
+  width: 220px;
+  height: 1px;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: linear-gradient(to right, transparent, rgba(125, 211, 252, 0.2), rgba(255, 255, 255, 0.78));
+  box-shadow: 0 0 14px rgba(125, 211, 252, 0.28);
+  opacity: 0;
+  transform: rotate(28deg) translate3d(-260px, 0, 0);
+  animation: iz-intro-shooting-star 7.6s ease-in-out infinite;
+}
+
+.iz-intro-shooting-star-a {
+  left: 8%;
+  top: 26%;
+}
+
+.iz-intro-shooting-star-b {
+  right: 12%;
+  top: 58%;
+  width: 170px;
+  animation-delay: 3.8s;
+  transform: rotate(18deg) translate3d(-220px, 0, 0);
+}
+.iz-section-constellation .iz-exp-orbit-a { width: 760px; height: 760px; right: 4%; top: 4%; border-color: rgba(125, 211, 252, 0.18); }
+.iz-section-constellation .iz-exp-ribbon { transform: rotate(-8deg); top: 42%; background: linear-gradient(to right, transparent, rgba(125, 211, 252, 0.22), rgba(196, 181, 253, 0.14), transparent); }
+.iz-section-constellation .iz-exp-star-a { left: 22%; top: 18%; }
+.iz-section-constellation .iz-exp-star-b { right: 24%; bottom: 18%; }
+.iz-section-constellation::before { opacity: 0.22; }
+.iz-section-constellation .iz-exp-flow { opacity: 0.22; }
+.iz-section-constellation .iz-exp-grid { opacity: 0.18; }
+.iz-section-constellation .iz-exp-orbit { opacity: 0.42; }
+.iz-section-constellation .iz-exp-beam { opacity: 0.18; }
+.iz-section-constellation .iz-exp-ribbon { opacity: 0.22; }
+.iz-section-constellation .iz-exp-window { opacity: 0.22; }
+.iz-section-constellation .iz-exp-pulse { opacity: 0.44; }
+.iz-section-constellation .iz-exp-star { opacity: 0.46; }
+.iz-section-constellation .iz-exp-shoot { opacity: 0.42; }
+.iz-section-pipeline .iz-exp-ribbon { height: 2px; top: 55%; background: linear-gradient(to right, transparent, rgba(16, 185, 129, 0.28), rgba(99, 102, 241, 0.24), transparent); }
+.iz-section-pipeline .iz-exp-pulse-a { animation: iz-pipeline-node 4s linear infinite; top: 55%; }
+.iz-section-pipeline .iz-exp-shoot-a { top: 48%; }
+.iz-section-industries .iz-exp-grid { background-size: 112px 70px; transform: skewY(-4deg); opacity: 0.32; }
+.iz-section-industries .iz-exp-orbit-a { right: -210px; top: 2%; border-color: rgba(245, 158, 11, 0.14); }
+.iz-section-products .iz-exp-window { opacity: 0.7; }
+.iz-section-products .iz-exp-window-a { width: 260px; height: 150px; }
+.iz-section-products .iz-exp-shoot-b { top: 24%; right: 16%; }
+.iz-section-protocol .iz-exp-ribbon { top: 30%; transform: rotate(90deg); left: 48%; right: auto; width: 420px; }
+.iz-section-protocol .iz-exp-star-a { left: 48%; top: 18%; }
+.iz-section-trust .iz-exp-orbit-a { border-color: rgba(16, 185, 129, 0.2); }
+.iz-section-trust .iz-exp-shoot-a { background: linear-gradient(to right, transparent, rgba(16, 185, 129, 0.34), rgba(255, 255, 255, 0.62)); }
+.iz-section-labs .iz-exp-grid { opacity: 0.38; background-size: 36px 36px; }
+.iz-section-labs .iz-exp-beam { opacity: 0.46; animation-duration: 8.2s; }
+.iz-section-labs .iz-exp-star { filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.38)); }
+.iz-section-story .iz-exp-orbit-a { right: 50%; transform: translateX(50%); }
+.iz-section-leadership .iz-exp-beam { background: radial-gradient(circle at 50% 40%, rgba(168, 85, 247, 0.18), transparent 34%); transform: none; animation: iz-portrait-glow 6s ease-in-out infinite alternate; }
+.iz-section-leadership .iz-exp-shoot-a { left: 58%; top: 18%; }
+.iz-section-contact .iz-exp-window-a { right: 2%; top: 24%; width: 250px; height: 170px; }
+.iz-section-contact .iz-exp-window-b { left: 1%; bottom: 8%; width: 260px; height: 124px; }
+.iz-section-contact .iz-exp-ribbon { top: 62%; background: linear-gradient(to right, transparent, rgba(34, 211, 238, 0.22), rgba(16, 185, 129, 0.16), transparent); }
+
+.iz-feature-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.iz-feature-card:not(.glass-card) {
+  background:
+    radial-gradient(circle at 22% 0%, rgba(125, 211, 252, 0.07), transparent 32%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.52), rgba(8, 12, 22, 0.72)) !important;
+  border-color: rgba(148, 163, 184, 0.14) !important;
+  box-shadow:
+    0 16px 38px -22px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+}
+
+.iz-feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.08), transparent 42%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.iz-feature-card:hover::before {
+  transform: translateX(120%);
+}
+
+.iz-product-window {
+  position: relative;
+  overflow: hidden;
+}
+
+.iz-product-window::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
+  height: 22px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.18), rgba(34, 211, 238, 0.22), rgba(16, 185, 129, 0.14));
+  transform: translateX(-18%);
+  animation: iz-mini-progress 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes iz-scan-beam {
+  0%, 18% { transform: translateX(-80%); opacity: 0; }
+  45% { opacity: 0.6; }
+  78%, 100% { transform: translateX(80%); opacity: 0; }
+}
+
+@keyframes iz-orbit-drift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(-18px, 22px, 0) rotate(8deg); }
+}
+
+@keyframes iz-node-pulse {
+  0%, 100% { transform: scale(0.85); opacity: 0.42; }
+  50% { transform: scale(1.35); opacity: 0.95; }
+}
+
+@keyframes iz-panel-float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.46; }
+  50% { transform: translate3d(0, -16px, 0); opacity: 0.85; }
+}
+
+@keyframes iz-ribbon-flow {
+  from { opacity: 0.18; filter: blur(0); }
+  to { opacity: 0.68; filter: blur(0.5px); }
+}
+
+@keyframes iz-pipeline-node {
+  from { left: 6%; opacity: 0; }
+  15%, 82% { opacity: 1; }
+  to { left: 88%; opacity: 0; }
+}
+
+@keyframes iz-portrait-glow {
+  from { opacity: 0.34; transform: scale(0.92); }
+  to { opacity: 0.82; transform: scale(1.06); }
+}
+
+@keyframes iz-mini-progress {
+  from { transform: translateX(-18%) scaleX(0.55); opacity: 0.45; }
+  to { transform: translateX(18%) scaleX(1); opacity: 0.95; }
+}
+
+@keyframes iz-section-flow-light {
+  0%, 100% {
+    opacity: 0.32;
+    transform: translate3d(-16%, -2%, 0) rotate(-1deg);
+  }
+  42% {
+    opacity: 0.62;
+    transform: translate3d(10%, 4%, 0) rotate(1deg);
+  }
+  70% {
+    opacity: 0.44;
+    transform: translate3d(18%, -1%, 0) rotate(0deg);
+  }
+}
+
+@keyframes iz-cosmic-flow-sweep {
+  0%, 100% {
+    opacity: 0.34;
+    transform: translate3d(-22%, -4%, 0) rotate(-1deg) scale(0.98);
+  }
+  38% {
+    opacity: 0.78;
+    transform: translate3d(4%, 3%, 0) rotate(1deg) scale(1.04);
+  }
+  72% {
+    opacity: 0.5;
+    transform: translate3d(20%, -2%, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes iz-section-pattern-drift {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 78px 78px, 78px 78px, 34px 34px; }
+}
+
+@keyframes iz-hero-sky-drift {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      180px 120px,
+      -160px 220px,
+      220px -180px,
+      -120px -140px,
+      0 0,
+      0 0;
+  }
+}
+
+@keyframes iz-cosmic-star {
+  0%, 100% { opacity: 0.28; transform: scale(0.74) rotate(0deg); }
+  45% { opacity: 0.9; transform: scale(1.08) rotate(45deg); }
+}
+
+@keyframes iz-shooting-star {
+  0%, 58% { opacity: 0; transform: rotate(28deg) translate3d(-220px, 0, 0); }
+  68% { opacity: 0.9; }
+  86%, 100% { opacity: 0; transform: rotate(28deg) translate3d(420px, 190px, 0); }
+}
+
+@keyframes iz-intro-shooting-star {
+  0%, 46% {
+    opacity: 0;
+    transform: rotate(28deg) translate3d(-260px, 0, 0);
+  }
+  56% {
+    opacity: 0.86;
+  }
+  74%, 100% {
+    opacity: 0;
+    transform: rotate(28deg) translate3d(520px, 235px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iz-section-experience *,
+  .iz-feature-card::before,
+  .iz-product-window::after,
+  .iz-exp-shoot,
+  .iz-exp-star,
+  .iz-exp-flow,
+  .iz-exp-hero-sky,
+  .iz-intro-shooting-star,
+  .iz-section-experience::before,
+  .iz-section-experience::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

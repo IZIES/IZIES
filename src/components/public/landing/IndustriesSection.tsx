@@ -1,9 +1,11 @@
 import { Building2, Rocket, Zap, ShieldCheck, Radio, Users } from "lucide-react";
+import { SectionExperience } from "./SectionExperience";
 
 export function IndustriesSection() {
   return (
-    <section id="industries" className="relative z-10 py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="industries" className="iz-downstream-section iz-depth-2 relative z-10 py-24 px-6 overflow-hidden">
+      <SectionExperience variant="industries" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
             <Building2 className="w-3.5 h-3.5 text-indigo-400" />
@@ -19,7 +21,7 @@ export function IndustriesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* 1. Startups */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-indigo-500/40 space-y-4">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-indigo-500/40 space-y-4">
             <div className="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 w-fit">
               <Rocket className="w-6 h-6" />
             </div>
@@ -30,7 +32,7 @@ export function IndustriesSection() {
           </div>
 
           {/* 2. Growing Businesses */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 space-y-4">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-purple-500/40 space-y-4">
             <div className="p-3.5 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 w-fit">
               <Zap className="w-6 h-6" />
             </div>
@@ -41,7 +43,7 @@ export function IndustriesSection() {
           </div>
 
           {/* 3. Enterprises */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-blue-500/40 space-y-4">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-blue-500/40 space-y-4">
             <div className="p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 w-fit">
               <ShieldCheck className="w-6 h-6" />
             </div>
@@ -52,7 +54,7 @@ export function IndustriesSection() {
           </div>
 
           {/* 4. Creators & Communities */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-pink-500/40 space-y-4">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-pink-500/40 space-y-4">
             <div className="p-3.5 rounded-2xl bg-pink-500/10 border border-pink-500/20 text-pink-400 w-fit">
               <Radio className="w-6 h-6" />
             </div>
@@ -63,7 +65,7 @@ export function IndustriesSection() {
           </div>
 
           {/* 5. Technology Partners */}
-          <div className="glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-emerald-500/40 space-y-4 md:col-span-2 lg:col-span-2">
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] hover:border-emerald-500/40 space-y-4 md:col-span-2 lg:col-span-2">
             <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 w-fit">
               <Users className="w-6 h-6" />
             </div>
