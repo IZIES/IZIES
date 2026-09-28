@@ -835,3 +835,45 @@ section h2 {
     transition: none !important;
   }
 }
+
+/* Performance guardrails for the connected cosmic page */
+.iz-downstream-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+  contain: layout paint style;
+}
+
+.iz-downstream-section .iz-section-experience {
+  opacity: 0.28;
+}
+
+.iz-depth-1 .iz-section-experience { opacity: 0.34; }
+.iz-depth-2 .iz-section-experience { opacity: 0.3; }
+.iz-depth-3 .iz-section-experience,
+.iz-depth-4 .iz-section-experience,
+.iz-depth-5 .iz-section-experience,
+.iz-depth-6 .iz-section-experience,
+.iz-depth-7 .iz-section-experience,
+.iz-depth-8 .iz-section-experience,
+.iz-depth-9 .iz-section-experience { opacity: 0.24; }
+
+.iz-downstream-section .iz-exp-flow {
+  filter: blur(10px);
+}
+
+.iz-downstream-section .iz-exp-window,
+.iz-feature-card:not(.glass-card) {
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 767px) {
+  .iz-downstream-section {
+    contain-intrinsic-size: 760px;
+  }
+
+  .iz-section-experience,
+  .iz-intro-shooting-star,
+  .iz-exp-shoot {
+    animation-duration: 16s !important;
+  }
+}
