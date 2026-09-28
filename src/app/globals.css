@@ -25,6 +25,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -1136,4 +1139,20 @@ section h2 {
   .iz-exp-shoot {
     animation-duration: 16s !important;
   }
+}
+
+
+@keyframes iz-ticker-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-iz-ticker {
+  display: flex;
+  width: max-content;
+  animation: iz-ticker-marquee 12s linear infinite;
 }

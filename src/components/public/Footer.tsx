@@ -15,9 +15,9 @@ export async function Footer() {
       : "https://izies.in";
 
   return (
-    <footer className="relative pt-20 pb-12 text-slate-400">
+    <footer className="relative pt-20 pb-12 text-slate-400 overflow-hidden">
       {/* Huge Glowing Orb Background */}
-      <div className="absolute left-0 right-0 top-0 pointer-events-none">
+      <div className="absolute left-0 right-0 top-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-[150px] left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-cyan-500/15 blur-[120px] rounded-[100%]" />
         <div className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-indigo-500/15 blur-[100px] rounded-[100%]" />
       </div>

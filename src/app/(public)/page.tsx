@@ -32,7 +32,7 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(serviceCatalog("/")) }} />
       {/* Global Background Synchronized Grid & Radial Glow */}
-      <div className="fixed inset-0 z-0 bg-[#04060A] pointer-events-none">
+      <div className="fixed inset-0 z-0 bg-[#04060A] pointer-events-none overflow-hidden">
         <HeroSystemsCanvas />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_23%_28%,rgba(5,7,15,0.5),rgba(5,7,15,0.76)_50%,rgba(4,6,10,0.95)_100%)]" />
         {/* Mesh Gradients — GPU accelerated to prevent scroll lag */}

@@ -529,16 +529,22 @@ const POSITION_STYLES: Record<
 
 function getRingStyle(ring: number, total: number, offset: number = 0, currentWidth?: number) {
   const w = currentWidth || (typeof window !== "undefined" ? window.innerWidth : 1024);
-  let radius = 0.38;
-  if (w < 480) radius = 0.29;
-  else if (w < 640) radius = 0.33;
-  else if (w < 768) radius = 0.35;
-  else if (w < 1024) radius = 0.38;
-  else if (w < 1280) radius = 0.4;
-  else radius = 0.42;
+  let baseRadius = 0.38;
+  if (w < 480) baseRadius = 0.32;
+  else if (w < 640) baseRadius = 0.34;
+  else if (w < 768) baseRadius = 0.36;
+  else if (w < 1024) baseRadius = 0.38;
+  else if (w < 1280) baseRadius = 0.40;
+  else baseRadius = 0.42;
+
+  // Stagger alternating items on inner/outer orbit tracks to prevent clumping and overlapping
+  const isEven = ring % 2 === 0;
+  const radialOffset = w < 640 ? (isEven ? 0.08 : -0.07) : (isEven ? 0.04 : -0.04);
+  const finalRadius = Math.max(0.20, baseRadius + radialOffset + offset);
+
   const angle = (ring / total) * Math.PI * 2 - Math.PI / 2;
-  const x = Math.cos(angle) * (radius + offset);
-  const y = Math.sin(angle) * (radius + offset);
+  const x = Math.cos(angle) * finalRadius;
+  const y = Math.sin(angle) * finalRadius;
   return {
     position: "absolute" as const,
     top: `calc(50% + ${y * 100}%)`,
@@ -907,7 +913,7 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
           animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.18, ease: SOFT_EASE }}
         >
-          <div className="relative w-full max-w-[540px] sm:max-w-[600px] aspect-square flex items-center justify-center p-2 sm:p-8">
+          <div className="relative w-full max-w-[340px] sm:max-w-[480px] lg:max-w-[540px] aspect-square flex items-center justify-center p-2 sm:p-8">
             {/* Dynamic Ambient Background Glows */}
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-blue-500/5 to-cyan-500/10 blur-[80px] rounded-full pointer-events-none" />
 
@@ -966,10 +972,10 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
                   <Image
                     src="/brand/izies-logo-transparent.png"
                     alt="IZIES Core Logo"
-                    width={120}
-                    height={120}
+                    width={90}
+                    height={90}
                     priority
-                    className="object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+                    className="h-16 w-16 sm:h-24 sm:w-24 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]"
                   />
                 </div>
               </div>
@@ -996,20 +1002,20 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
                       activeTriggerRef.current = e.currentTarget;
                       setActiveDomainId(isCurrentActive ? null : domain.id);
                     }}
-                    className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#070A14]/90 border backdrop-blur-md transition-all duration-300 cursor-pointer select-none group ${
+                    className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#070A14]/90 border backdrop-blur-md transition-all duration-300 cursor-pointer select-none group whitespace-nowrap ${
                       isCurrentActive
                         ? `${colorConfig.border} ${colorConfig.glow} scale-105 ring-2 ring-white/10`
                         : `${colorConfig.border} ${colorConfig.glow}`
                     }`}
                   >
                     <IconComponent
-                      className={`w-4 h-4 ${colorConfig.text} transition-transform group-hover:scale-110`}
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${colorConfig.text} transition-transform group-hover:scale-110`}
                     />
-                    <span className="text-xs font-semibold text-slate-200 group-hover:text-white">
+                    <span className="text-[10px] sm:text-xs font-semibold text-slate-200 group-hover:text-white">
                       {domain.shortTitle}
                     </span>
                     <span
-                      className={`w-1.5 h-1.5 rounded-full ${colorConfig.bg} border ${colorConfig.border} animate-pulse`}
+                      className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${colorConfig.bg} border ${colorConfig.border} animate-pulse`}
                     />
                   </button>
                 </div>
@@ -1119,14 +1125,37 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
             )}
 
             {/* Bottom Floating Telemetry Strip */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-20 w-max pointer-events-none">
-              <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-400">
-                <span className="flex items-center gap-1.5 text-indigo-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+            <div className="absolute -bottom-10 sm:-bottom-8 inset-x-0 sm:inset-auto sm:left-1/2 sm:-translate-x-1/2 z-20 overflow-hidden sm:overflow-visible px-2 sm:px-0 pointer-events-none flex justify-center">
+              {/* Phone Continuous Right-to-Left Ticker (Exclusively for Mobile) */}
+              <div className="sm:hidden w-full max-w-[310px] overflow-hidden rounded-full bg-[#070A14]/90 border border-white/10 backdrop-blur-md py-1.5 px-3 shadow-lg">
+                <div className="animate-iz-ticker gap-6 text-[10px] font-mono text-slate-400 whitespace-nowrap">
+                  <span className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                    <span className="text-emerald-300 font-semibold">Systems Online</span>
+                    <span className="text-white/20">•</span>
+                    <span>Tap to inspect tech stacks</span>
+                    <span className="text-white/20">•</span>
+                    <span className="text-cyan-300">Live Interactive Digital OS</span>
+                  </span>
+                  <span className="flex items-center gap-2" aria-hidden="true">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                    <span className="text-emerald-300 font-semibold">Systems Online</span>
+                    <span className="text-white/20">•</span>
+                    <span>Tap to inspect tech stacks</span>
+                    <span className="text-white/20">•</span>
+                    <span className="text-cyan-300">Live Interactive Digital OS</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Tablet & Desktop Static Badge */}
+              <div className="hidden sm:flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#070A14]/90 border border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-400 shadow-lg whitespace-nowrap w-max shrink-0">
+                <span className="flex items-center gap-1.5 text-indigo-300 whitespace-nowrap">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                   <span>Systems Online</span>
                 </span>
                 <span className="text-white/20">|</span>
-                <span>Hover / Tap to inspect tech stacks</span>
+                <span className="whitespace-nowrap">Hover / Tap to inspect tech stacks</span>
               </div>
             </div>
           </div>
