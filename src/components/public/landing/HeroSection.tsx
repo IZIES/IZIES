@@ -527,26 +527,26 @@ const POSITION_STYLES: Record<
   },
 };
 
-function getRingStyle(ring: number, total: number, offset: number = 0) {
-    const w = typeof window !== "undefined" ? window.innerWidth : 1024;
-    let radius = 0.38;
-    if (w < 480) radius = 0.32;
-    else if (w < 640) radius = 0.34;
-    else if (w < 768) radius = 0.36;
-    else if (w < 1024) radius = 0.38;
-    else if (w < 1280) radius = 0.4;
-    else radius = 0.42;
-    const angle = (ring / total) * Math.PI * 2 - Math.PI / 2;
-    const x = Math.cos(angle) * (radius + offset);
-    const y = Math.sin(angle) * (radius + offset);
-    return {
-      position: "absolute" as const,
-      top: `calc(50% + ${y * 100}%)`,
-      left: `calc(50% + ${x * 100}%)`,
-      transform: "translate(-50%, -50%)",
-      transformOrigin: "center",
-    };
-  }
+function getRingStyle(ring: number, total: number, offset: number = 0, currentWidth?: number) {
+  const w = currentWidth || (typeof window !== "undefined" ? window.innerWidth : 1024);
+  let radius = 0.38;
+  if (w < 480) radius = 0.29;
+  else if (w < 640) radius = 0.33;
+  else if (w < 768) radius = 0.35;
+  else if (w < 1024) radius = 0.38;
+  else if (w < 1280) radius = 0.4;
+  else radius = 0.42;
+  const angle = (ring / total) * Math.PI * 2 - Math.PI / 2;
+  const x = Math.cos(angle) * (radius + offset);
+  const y = Math.sin(angle) * (radius + offset);
+  return {
+    position: "absolute" as const,
+    top: `calc(50% + ${y * 100}%)`,
+    left: `calc(50% + ${x * 100}%)`,
+    transform: "translate(-50%, -50%)",
+    transformOrigin: "center",
+  };
+}
 
 const COLOR_STYLES: Record<
   string,
@@ -623,7 +623,15 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
   const containerRef = useRef<HTMLDivElement>(null);
   const activeTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [popoverStyle, setPopoverStyle] = useState<React.CSSProperties>({});
+  const [windowWidth, setWindowWidth] = useState(1024);
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const heroMotion = shouldReduceMotion
     ? {}
     : {
@@ -759,7 +767,7 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
   }, [activeDomainId]);
 
   return (
-    <section className="relative pt-28 pb-20 sm:pt-36 sm:pb-28 px-6 max-w-7xl mx-auto z-10">
+    <section className="relative pt-6 sm:pt-12 lg:pt-16 pb-16 sm:pb-24 lg:pb-28 px-4 sm:px-6 max-w-7xl mx-auto z-10">
       {/* Background Grid & Gradient */}
       <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-[0.075] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
 
@@ -973,7 +981,7 @@ export function HeroSection({ onScrollTo, showBackground = true }: HeroSectionPr
               const colorConfig =
                 COLOR_STYLES[domain.color] || COLOR_STYLES.purple;
               const isCurrentActive = activeDomainId === domain.id;
-              const ringStyle = getRingStyle(index, domains.length);
+              const ringStyle = getRingStyle(index, domains.length, 0, windowWidth);
 
               return (
                 <div
