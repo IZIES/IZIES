@@ -20,6 +20,7 @@ const logoFont = Righteous({
 
 import ProgressBarProvider from "@/components/ProgressBarProvider";
 import { RegisterSW } from "@/components/RegisterSW";
+import { BrandSplash } from "@/components/public/BrandSplash";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -131,6 +132,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-[#04060A] text-slate-100">
         <RegisterSW />
+        <BrandSplash />
         <ProgressBarProvider>
           {children}
         </ProgressBarProvider>

@@ -1,8 +1,25 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function Loading() {
+export function BrandSplash() {
+  const [visible, setVisible] = useState(true);
+  const [hold, setHold] = useState(false);
+
+  useEffect(() => {
+    const shouldHold = new URLSearchParams(window.location.search).get("splash") === "hold";
+    setHold(shouldHold);
+    if (shouldHold) return;
+
+    const timeout = window.setTimeout(() => setVisible(false), 2700);
+    return () => window.clearTimeout(timeout);
+  }, []);
+
+  if (!visible) return null;
+
   return (
-    <div className="iz-brand-splash iz-brand-splash--route" aria-label="Loading IZIES" aria-live="polite">
+    <div className={`iz-brand-splash${hold ? " iz-brand-splash--hold" : ""}`} aria-label="Loading IZIES" aria-live="polite">
       <div className="iz-brand-splash__noise" aria-hidden="true" />
       <div className="iz-brand-splash__mark" aria-hidden="true">
         <Image
