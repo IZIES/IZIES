@@ -126,7 +126,7 @@ export function HeroSystemsCanvas() {
       const rect = canvas.getBoundingClientRect();
       width = Math.max(1, rect.width);
       height = Math.max(1, rect.height);
-      dpr = Math.min(window.devicePixelRatio || 1, 1.15);
+      dpr = width < 768 ? 1 : Math.min(window.devicePixelRatio || 1, 1.15);
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);

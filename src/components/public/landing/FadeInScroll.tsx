@@ -12,7 +12,7 @@ export function FadeInScroll({ children, delay = 0 }: { children: ReactNode; del
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18, margin: "0px 0px -80px 0px" }}
+      viewport={{ once: true, amount: 0, margin: "200px 0px 200px 0px" }}
       transition={{
         duration: 0.42,
         delay,
