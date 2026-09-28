@@ -1,9 +1,7 @@
 # *
 User-agent: *
 Allow: /
-
-# *
-User-agent: *
+Allow: /api/hero-tech
 Disallow: /api/
 Disallow: /candidate/
 Disallow: /jobs/

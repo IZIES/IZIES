@@ -6,8 +6,7 @@ module.exports = {
   exclude: ['/server-sitemap.xml', '/api/*', '/candidate/*', '/jobs/*', '/jobs/[slug]', '/robots.txt', '/manifest.webmanifest', '/sitemap.xml'],
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', allow: '/' },
-      { userAgent: '*', disallow: ['/api/', '/candidate/', '/jobs/'] },
+      { userAgent: '*', allow: ['/', '/api/hero-tech'], disallow: ['/api/', '/candidate/', '/jobs/'] },
     ],
   },
   transform: async (config, path) => {
