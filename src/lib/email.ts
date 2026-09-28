@@ -58,8 +58,7 @@ async function prepareStageEmail(params: StageEmailParams) {
     customNote,
     applicationId: application.id,
     appUrl:
-      process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://izies-career.vercel.app"),
+      (process.env.NEXT_PUBLIC_BASE_URL || "https://izies.in"),
     offerSalary: offerSalary || application.offerSalary || undefined,
     offerJoiningDate: offerJoiningDate || application.offerJoiningDate || undefined,
     offerLocation: offerLocation || application.offerLocation || undefined,

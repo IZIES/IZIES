@@ -407,9 +407,7 @@ interface HtmlWrapperProps {
 }
 
 function getHtmlWrapper(props: HtmlWrapperProps): string {
-  const appUrl =
-    process.env.NEXT_PUBLIC_APP_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://izies.in");
+  const appUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://izies.in";
   const logoUrl = "https://izies.in/icons/android-chrome-512x512.png";
 
   return `

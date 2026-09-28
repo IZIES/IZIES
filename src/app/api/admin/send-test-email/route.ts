@@ -38,8 +38,7 @@ export async function POST(req: NextRequest) {
       customNote: customNote || "This is a sample test note injected by admin to preview email layout.",
       applicationId: "test-app-123",
       appUrl:
-        process.env.NEXT_PUBLIC_APP_URL ||
-        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://izies.in"),
+        process.env.NEXT_PUBLIC_BASE_URL || "https://izies.in",
       offerSalary: "Unpaid (Experience & Certificate of Completion)",
       offerJoiningDate: "1st October 2026",
       offerLocation: "Remote (India)",
