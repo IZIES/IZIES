@@ -20,27 +20,51 @@ export function AboutSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-          {/* Mission */}
-          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
-              <TargetIcon />
-              <span>Our Mission</span>
+        <div className="pt-4 space-y-6">
+          {/* Brand Identity / Acronym */}
+          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative z-10 space-y-4 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">IZIES is built on five ideas.</h3>
+              <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 text-sm sm:text-lg font-semibold tracking-wide">
+                <span className="text-indigo-400">Ideas</span>
+                <span className="text-slate-600">·</span>
+                <span className="text-cyan-400">Zeal</span>
+                <span className="text-slate-600">·</span>
+                <span className="text-emerald-400">Innovation</span>
+                <span className="text-slate-600">·</span>
+                <span className="text-amber-400">Engineering</span>
+                <span className="text-slate-600">·</span>
+                <span className="text-purple-400">Solutions</span>
+              </div>
+              <p className="text-slate-300 text-sm sm:text-base font-medium max-w-2xl mx-auto pt-2">
+                We turn ambitious ideas into useful digital experiences.
+              </p>
             </div>
-            <p className="text-base text-white font-medium leading-relaxed">
-              To make advanced digital technology practical, accessible and impactful.
-            </p>
           </div>
 
-          {/* Vision */}
-          <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4" />
-              <span>Our Vision</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Mission */}
+            <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                <TargetIcon />
+                <span>Our Mission</span>
+              </div>
+              <p className="text-base text-white font-medium leading-relaxed">
+                To make advanced digital technology practical, accessible and impactful.
+              </p>
             </div>
-            <p className="text-base text-white font-medium leading-relaxed">
-              To become a trusted global technology organization known for building intelligent products and transformative digital solutions.
-            </p>
+
+            {/* Vision */}
+            <div className="iz-feature-card glass-card p-8 rounded-3xl border border-white/[0.08] space-y-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4" />
+                <span>Our Vision</span>
+              </div>
+              <p className="text-base text-white font-medium leading-relaxed">
+                To become a trusted global technology organization known for building intelligent products and transformative digital solutions.
+              </p>
+            </div>
           </div>
         </div>
       </div>
