@@ -19,6 +19,8 @@ import {
   ExternalLink,
   ChevronRight,
   Shield,
+  Layers,
+  FolderDot,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -104,6 +106,18 @@ export function AdminShell({ initialUser, children }: AdminShellProps) {
       label: "Inbound Leads & Reach",
       icon: Inbox,
       active: pathname.startsWith("/admin/inquiries"),
+    },
+    {
+      href: "/admin/client-projects",
+      label: "Client Projects",
+      icon: FolderDot,
+      active: pathname.startsWith("/admin/client-projects"),
+    },
+    {
+      href: "/admin/products",
+      label: "Products & SaaS",
+      icon: Layers,
+      active: pathname.startsWith("/admin/products"),
     },
     {
       href: "/admin/team",

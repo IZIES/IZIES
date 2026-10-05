@@ -12,6 +12,7 @@ import {
   Settings,
   Code,
   Inbox,
+  FlaskConical,
 } from "lucide-react";
 
 export function AdminSidebar() {
@@ -53,6 +54,18 @@ export function AdminSidebar() {
       label: "Team Management",
       icon: UserCheck,
       active: pathname.startsWith("/admin/team"),
+    },
+    {
+      href: "/admin/products",
+      label: "Products & Labs",
+      icon: FlaskConical,
+      active: pathname.startsWith("/admin/products"),
+    },
+    {
+      href: "/admin/client-projects",
+      label: "Client Portfolio",
+      icon: Briefcase,
+      active: pathname.startsWith("/admin/client-projects"),
     },
     {
       href: "/admin/tech-stack",

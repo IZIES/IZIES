@@ -13,7 +13,7 @@ const IndustriesSection = nextDynamic(() => import("@/components/public/landing/
 const WhatWeBuildSection = nextDynamic(() => import("@/components/public/landing/WhatWeBuildSection").then(mod => mod.WhatWeBuildSection));
 const ApproachSection = nextDynamic(() => import("@/components/public/landing/ApproachSection").then(mod => mod.ApproachSection));
 const WhyChooseUsSection = nextDynamic(() => import("@/components/public/landing/WhyChooseUsSection").then(mod => mod.WhyChooseUsSection));
-const LabsInnovationSection = nextDynamic(() => import("@/components/public/landing/LabsInnovationSection").then(mod => mod.LabsInnovationSection));
+const WorkAndProductsTeaserSection = nextDynamic(() => import("@/components/public/landing/WorkAndProductsTeaserSection").then(mod => mod.WorkAndProductsTeaserSection));
 const AboutSection = nextDynamic(() => import("@/components/public/landing/AboutSection").then(mod => mod.AboutSection));
 const LeadershipSection = nextDynamic(() => import("@/components/public/landing/LeadershipSection").then(mod => mod.LeadershipSection));
 const ContactSection = nextDynamic(() => import("@/components/public/landing/ContactSection").then(mod => mod.ContactSection));
@@ -91,9 +91,9 @@ export default function HomePage() {
           <WhyChooseUsSection />
         </FadeInScroll>
 
-        {/* 9. Labs & Innovation Teaser */}
+        {/* 9. Work & Products Teaser */}
         <FadeInScroll>
-          <LabsInnovationSection />
+          <WorkAndProductsTeaserSection />
         </FadeInScroll>
 
         {/* 10. About IZIES */}

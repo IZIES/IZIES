@@ -420,3 +420,53 @@ model ContactInquiry {
   @@index([createdAt])
   @@map("contact_inquiries")
 }
+
+model IziesProduct {
+  id          String   @id @default(cuid())
+  name        String
+  tagline     String
+  description String   @db.Text
+  type        String   @default("Free") // "Free", "Open Source", "Freemium", "Paid", "Free · Open Source"
+  status      String   @default("in_development") // "live", "beta", "in_development", "coming_soon"
+  url         String?
+  imageUrl    String? // Screenshot / cover image URL
+  iconName    String? // Lucide icon name e.g. "Rocket", "Globe", "Sparkle"
+  color       String?  @default("indigo") // "indigo", "cyan", "purple", "violet", "blue"
+  tags        String[] @default([]) // ["Students", "Collaboration", "Open Platform"]
+  services    String[] @default([]) // capability mapping
+  isFeatured  Boolean  @default(false)
+  order       Int      @default(0)
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+  @@index([order])
+  @@map("izies_products")
+}
+
+model ClientProject {
+  id          String    @id @default(cuid())
+  name        String
+  clientName  String
+  industry    String
+  description String    @db.Text
+  challenge   String?   @db.Text
+  solution    String?   @db.Text
+  result      String?   @db.Text
+  techStack   String[]  @default([]) // ["React", "Node.js", "AWS"]
+  services    String[]  @default([]) // ["Web Development", "UI/UX Design"]
+  imageUrl    String? // Screenshot or cover image
+  websiteUrl  String?
+  startDate   DateTime?
+  endDate     DateTime?
+  isFeatured  Boolean   @default(false)
+  order       Int       @default(0)
+  isPublic    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([isFeatured])
+  @@index([order])
+  @@map("client_projects")
+}

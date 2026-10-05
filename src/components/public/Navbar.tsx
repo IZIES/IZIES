@@ -103,6 +103,8 @@ export function Navbar() {
     { num: "05", name: "Contact", id: "contact", icon: Mail, href: "/#contact", desc: "Get project consultation" },
   ];
 
+  const isProductsActive = pathname.startsWith("/products");
+
   return (
     <>
       {/* Mobile / Tablet Full Backdrop Overlay */}

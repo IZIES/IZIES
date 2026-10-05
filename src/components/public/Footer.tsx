@@ -131,6 +131,7 @@ export async function Footer() {
                 { name: "About IZIES", href: "/#about" },
                 { name: "Contact", href: "/#contact" },
                 { name: "Careers & Talent", href: "/careers" },
+                { name: "Products & Labs", href: "/products" },
                 { name: "IZIES Labs", href: "/#labs" }
               ].map((link) => (
                 <li key={link.name} className="group">

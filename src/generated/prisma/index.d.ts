@@ -88,6 +88,16 @@ export type SystemSetting = $Result.DefaultSelection<Prisma.$SystemSettingPayloa
  * 
  */
 export type ContactInquiry = $Result.DefaultSelection<Prisma.$ContactInquiryPayload>
+/**
+ * Model IziesProduct
+ * 
+ */
+export type IziesProduct = $Result.DefaultSelection<Prisma.$IziesProductPayload>
+/**
+ * Model ClientProject
+ * 
+ */
+export type ClientProject = $Result.DefaultSelection<Prisma.$ClientProjectPayload>
 
 /**
  * Enums
@@ -470,6 +480,26 @@ export class PrismaClient<
     * ```
     */
   get contactInquiry(): Prisma.ContactInquiryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.iziesProduct`: Exposes CRUD operations for the **IziesProduct** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IziesProducts
+    * const iziesProducts = await prisma.iziesProduct.findMany()
+    * ```
+    */
+  get iziesProduct(): Prisma.IziesProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.clientProject`: Exposes CRUD operations for the **ClientProject** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ClientProjects
+    * const clientProjects = await prisma.clientProject.findMany()
+    * ```
+    */
+  get clientProject(): Prisma.ClientProjectDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -925,7 +955,9 @@ export namespace Prisma {
     EmailTemplate: 'EmailTemplate',
     OfferLetterSettings: 'OfferLetterSettings',
     SystemSetting: 'SystemSetting',
-    ContactInquiry: 'ContactInquiry'
+    ContactInquiry: 'ContactInquiry',
+    IziesProduct: 'IziesProduct',
+    ClientProject: 'ClientProject'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -941,7 +973,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "teamMember" | "heroTechDomain" | "candidate" | "skill" | "department" | "job" | "application" | "applicationStatusHistory" | "applicationNote" | "emailNotification" | "emailTemplate" | "offerLetterSettings" | "systemSetting" | "contactInquiry"
+      modelProps: "user" | "teamMember" | "heroTechDomain" | "candidate" | "skill" | "department" | "job" | "application" | "applicationStatusHistory" | "applicationNote" | "emailNotification" | "emailTemplate" | "offerLetterSettings" | "systemSetting" | "contactInquiry" | "iziesProduct" | "clientProject"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1992,6 +2024,146 @@ export namespace Prisma {
           count: {
             args: Prisma.ContactInquiryCountArgs<ExtArgs>
             result: $Utils.Optional<ContactInquiryCountAggregateOutputType> | number
+          }
+        }
+      }
+      IziesProduct: {
+        payload: Prisma.$IziesProductPayload<ExtArgs>
+        fields: Prisma.IziesProductFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IziesProductFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IziesProductFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          findFirst: {
+            args: Prisma.IziesProductFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IziesProductFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          findMany: {
+            args: Prisma.IziesProductFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>[]
+          }
+          create: {
+            args: Prisma.IziesProductCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          createMany: {
+            args: Prisma.IziesProductCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IziesProductCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>[]
+          }
+          delete: {
+            args: Prisma.IziesProductDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          update: {
+            args: Prisma.IziesProductUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          deleteMany: {
+            args: Prisma.IziesProductDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IziesProductUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.IziesProductUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IziesProductPayload>
+          }
+          aggregate: {
+            args: Prisma.IziesProductAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIziesProduct>
+          }
+          groupBy: {
+            args: Prisma.IziesProductGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IziesProductGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IziesProductCountArgs<ExtArgs>
+            result: $Utils.Optional<IziesProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      ClientProject: {
+        payload: Prisma.$ClientProjectPayload<ExtArgs>
+        fields: Prisma.ClientProjectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClientProjectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClientProjectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          findFirst: {
+            args: Prisma.ClientProjectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClientProjectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          findMany: {
+            args: Prisma.ClientProjectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>[]
+          }
+          create: {
+            args: Prisma.ClientProjectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          createMany: {
+            args: Prisma.ClientProjectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClientProjectCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>[]
+          }
+          delete: {
+            args: Prisma.ClientProjectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          update: {
+            args: Prisma.ClientProjectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClientProjectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClientProjectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ClientProjectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientProjectPayload>
+          }
+          aggregate: {
+            args: Prisma.ClientProjectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClientProject>
+          }
+          groupBy: {
+            args: Prisma.ClientProjectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClientProjectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClientProjectCountArgs<ExtArgs>
+            result: $Utils.Optional<ClientProjectCountAggregateOutputType> | number
           }
         }
       }
@@ -18098,6 +18270,2126 @@ export namespace Prisma {
 
 
   /**
+   * Model IziesProduct
+   */
+
+  export type AggregateIziesProduct = {
+    _count: IziesProductCountAggregateOutputType | null
+    _avg: IziesProductAvgAggregateOutputType | null
+    _sum: IziesProductSumAggregateOutputType | null
+    _min: IziesProductMinAggregateOutputType | null
+    _max: IziesProductMaxAggregateOutputType | null
+  }
+
+  export type IziesProductAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type IziesProductSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type IziesProductMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    tagline: string | null
+    description: string | null
+    type: string | null
+    status: string | null
+    url: string | null
+    imageUrl: string | null
+    iconName: string | null
+    color: string | null
+    isFeatured: boolean | null
+    order: number | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IziesProductMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    tagline: string | null
+    description: string | null
+    type: string | null
+    status: string | null
+    url: string | null
+    imageUrl: string | null
+    iconName: string | null
+    color: string | null
+    isFeatured: boolean | null
+    order: number | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IziesProductCountAggregateOutputType = {
+    id: number
+    name: number
+    tagline: number
+    description: number
+    type: number
+    status: number
+    url: number
+    imageUrl: number
+    iconName: number
+    color: number
+    tags: number
+    services: number
+    isFeatured: number
+    order: number
+    isPublic: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type IziesProductAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type IziesProductSumAggregateInputType = {
+    order?: true
+  }
+
+  export type IziesProductMinAggregateInputType = {
+    id?: true
+    name?: true
+    tagline?: true
+    description?: true
+    type?: true
+    status?: true
+    url?: true
+    imageUrl?: true
+    iconName?: true
+    color?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IziesProductMaxAggregateInputType = {
+    id?: true
+    name?: true
+    tagline?: true
+    description?: true
+    type?: true
+    status?: true
+    url?: true
+    imageUrl?: true
+    iconName?: true
+    color?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IziesProductCountAggregateInputType = {
+    id?: true
+    name?: true
+    tagline?: true
+    description?: true
+    type?: true
+    status?: true
+    url?: true
+    imageUrl?: true
+    iconName?: true
+    color?: true
+    tags?: true
+    services?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type IziesProductAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IziesProduct to aggregate.
+     */
+    where?: IziesProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IziesProducts to fetch.
+     */
+    orderBy?: IziesProductOrderByWithRelationInput | IziesProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IziesProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IziesProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IziesProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned IziesProducts
+    **/
+    _count?: true | IziesProductCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: IziesProductAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: IziesProductSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IziesProductMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IziesProductMaxAggregateInputType
+  }
+
+  export type GetIziesProductAggregateType<T extends IziesProductAggregateArgs> = {
+        [P in keyof T & keyof AggregateIziesProduct]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIziesProduct[P]>
+      : GetScalarType<T[P], AggregateIziesProduct[P]>
+  }
+
+
+
+
+  export type IziesProductGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IziesProductWhereInput
+    orderBy?: IziesProductOrderByWithAggregationInput | IziesProductOrderByWithAggregationInput[]
+    by: IziesProductScalarFieldEnum[] | IziesProductScalarFieldEnum
+    having?: IziesProductScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IziesProductCountAggregateInputType | true
+    _avg?: IziesProductAvgAggregateInputType
+    _sum?: IziesProductSumAggregateInputType
+    _min?: IziesProductMinAggregateInputType
+    _max?: IziesProductMaxAggregateInputType
+  }
+
+  export type IziesProductGroupByOutputType = {
+    id: string
+    name: string
+    tagline: string
+    description: string
+    type: string
+    status: string
+    url: string | null
+    imageUrl: string | null
+    iconName: string | null
+    color: string | null
+    tags: string[]
+    services: string[]
+    isFeatured: boolean
+    order: number
+    isPublic: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: IziesProductCountAggregateOutputType | null
+    _avg: IziesProductAvgAggregateOutputType | null
+    _sum: IziesProductSumAggregateOutputType | null
+    _min: IziesProductMinAggregateOutputType | null
+    _max: IziesProductMaxAggregateOutputType | null
+  }
+
+  type GetIziesProductGroupByPayload<T extends IziesProductGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IziesProductGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IziesProductGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IziesProductGroupByOutputType[P]>
+            : GetScalarType<T[P], IziesProductGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IziesProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    tagline?: boolean
+    description?: boolean
+    type?: boolean
+    status?: boolean
+    url?: boolean
+    imageUrl?: boolean
+    iconName?: boolean
+    color?: boolean
+    tags?: boolean
+    services?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["iziesProduct"]>
+
+  export type IziesProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    tagline?: boolean
+    description?: boolean
+    type?: boolean
+    status?: boolean
+    url?: boolean
+    imageUrl?: boolean
+    iconName?: boolean
+    color?: boolean
+    tags?: boolean
+    services?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["iziesProduct"]>
+
+  export type IziesProductSelectScalar = {
+    id?: boolean
+    name?: boolean
+    tagline?: boolean
+    description?: boolean
+    type?: boolean
+    status?: boolean
+    url?: boolean
+    imageUrl?: boolean
+    iconName?: boolean
+    color?: boolean
+    tags?: boolean
+    services?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $IziesProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IziesProduct"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      tagline: string
+      description: string
+      type: string
+      status: string
+      url: string | null
+      imageUrl: string | null
+      iconName: string | null
+      color: string | null
+      tags: string[]
+      services: string[]
+      isFeatured: boolean
+      order: number
+      isPublic: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["iziesProduct"]>
+    composites: {}
+  }
+
+  type IziesProductGetPayload<S extends boolean | null | undefined | IziesProductDefaultArgs> = $Result.GetResult<Prisma.$IziesProductPayload, S>
+
+  type IziesProductCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<IziesProductFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: IziesProductCountAggregateInputType | true
+    }
+
+  export interface IziesProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IziesProduct'], meta: { name: 'IziesProduct' } }
+    /**
+     * Find zero or one IziesProduct that matches the filter.
+     * @param {IziesProductFindUniqueArgs} args - Arguments to find a IziesProduct
+     * @example
+     * // Get one IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IziesProductFindUniqueArgs>(args: SelectSubset<T, IziesProductFindUniqueArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one IziesProduct that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {IziesProductFindUniqueOrThrowArgs} args - Arguments to find a IziesProduct
+     * @example
+     * // Get one IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IziesProductFindUniqueOrThrowArgs>(args: SelectSubset<T, IziesProductFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first IziesProduct that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductFindFirstArgs} args - Arguments to find a IziesProduct
+     * @example
+     * // Get one IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IziesProductFindFirstArgs>(args?: SelectSubset<T, IziesProductFindFirstArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first IziesProduct that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductFindFirstOrThrowArgs} args - Arguments to find a IziesProduct
+     * @example
+     * // Get one IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IziesProductFindFirstOrThrowArgs>(args?: SelectSubset<T, IziesProductFindFirstOrThrowArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more IziesProducts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IziesProducts
+     * const iziesProducts = await prisma.iziesProduct.findMany()
+     * 
+     * // Get first 10 IziesProducts
+     * const iziesProducts = await prisma.iziesProduct.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const iziesProductWithIdOnly = await prisma.iziesProduct.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IziesProductFindManyArgs>(args?: SelectSubset<T, IziesProductFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a IziesProduct.
+     * @param {IziesProductCreateArgs} args - Arguments to create a IziesProduct.
+     * @example
+     * // Create one IziesProduct
+     * const IziesProduct = await prisma.iziesProduct.create({
+     *   data: {
+     *     // ... data to create a IziesProduct
+     *   }
+     * })
+     * 
+     */
+    create<T extends IziesProductCreateArgs>(args: SelectSubset<T, IziesProductCreateArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many IziesProducts.
+     * @param {IziesProductCreateManyArgs} args - Arguments to create many IziesProducts.
+     * @example
+     * // Create many IziesProducts
+     * const iziesProduct = await prisma.iziesProduct.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IziesProductCreateManyArgs>(args?: SelectSubset<T, IziesProductCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many IziesProducts and returns the data saved in the database.
+     * @param {IziesProductCreateManyAndReturnArgs} args - Arguments to create many IziesProducts.
+     * @example
+     * // Create many IziesProducts
+     * const iziesProduct = await prisma.iziesProduct.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many IziesProducts and only return the `id`
+     * const iziesProductWithIdOnly = await prisma.iziesProduct.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IziesProductCreateManyAndReturnArgs>(args?: SelectSubset<T, IziesProductCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a IziesProduct.
+     * @param {IziesProductDeleteArgs} args - Arguments to delete one IziesProduct.
+     * @example
+     * // Delete one IziesProduct
+     * const IziesProduct = await prisma.iziesProduct.delete({
+     *   where: {
+     *     // ... filter to delete one IziesProduct
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IziesProductDeleteArgs>(args: SelectSubset<T, IziesProductDeleteArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one IziesProduct.
+     * @param {IziesProductUpdateArgs} args - Arguments to update one IziesProduct.
+     * @example
+     * // Update one IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IziesProductUpdateArgs>(args: SelectSubset<T, IziesProductUpdateArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more IziesProducts.
+     * @param {IziesProductDeleteManyArgs} args - Arguments to filter IziesProducts to delete.
+     * @example
+     * // Delete a few IziesProducts
+     * const { count } = await prisma.iziesProduct.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IziesProductDeleteManyArgs>(args?: SelectSubset<T, IziesProductDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IziesProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IziesProducts
+     * const iziesProduct = await prisma.iziesProduct.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IziesProductUpdateManyArgs>(args: SelectSubset<T, IziesProductUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one IziesProduct.
+     * @param {IziesProductUpsertArgs} args - Arguments to update or create a IziesProduct.
+     * @example
+     * // Update or create a IziesProduct
+     * const iziesProduct = await prisma.iziesProduct.upsert({
+     *   create: {
+     *     // ... data to create a IziesProduct
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IziesProduct we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IziesProductUpsertArgs>(args: SelectSubset<T, IziesProductUpsertArgs<ExtArgs>>): Prisma__IziesProductClient<$Result.GetResult<Prisma.$IziesProductPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of IziesProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductCountArgs} args - Arguments to filter IziesProducts to count.
+     * @example
+     * // Count the number of IziesProducts
+     * const count = await prisma.iziesProduct.count({
+     *   where: {
+     *     // ... the filter for the IziesProducts we want to count
+     *   }
+     * })
+    **/
+    count<T extends IziesProductCountArgs>(
+      args?: Subset<T, IziesProductCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IziesProductCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IziesProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IziesProductAggregateArgs>(args: Subset<T, IziesProductAggregateArgs>): Prisma.PrismaPromise<GetIziesProductAggregateType<T>>
+
+    /**
+     * Group by IziesProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IziesProductGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IziesProductGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IziesProductGroupByArgs['orderBy'] }
+        : { orderBy?: IziesProductGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IziesProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIziesProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IziesProduct model
+   */
+  readonly fields: IziesProductFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IziesProduct.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IziesProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IziesProduct model
+   */ 
+  interface IziesProductFieldRefs {
+    readonly id: FieldRef<"IziesProduct", 'String'>
+    readonly name: FieldRef<"IziesProduct", 'String'>
+    readonly tagline: FieldRef<"IziesProduct", 'String'>
+    readonly description: FieldRef<"IziesProduct", 'String'>
+    readonly type: FieldRef<"IziesProduct", 'String'>
+    readonly status: FieldRef<"IziesProduct", 'String'>
+    readonly url: FieldRef<"IziesProduct", 'String'>
+    readonly imageUrl: FieldRef<"IziesProduct", 'String'>
+    readonly iconName: FieldRef<"IziesProduct", 'String'>
+    readonly color: FieldRef<"IziesProduct", 'String'>
+    readonly tags: FieldRef<"IziesProduct", 'String[]'>
+    readonly services: FieldRef<"IziesProduct", 'String[]'>
+    readonly isFeatured: FieldRef<"IziesProduct", 'Boolean'>
+    readonly order: FieldRef<"IziesProduct", 'Int'>
+    readonly isPublic: FieldRef<"IziesProduct", 'Boolean'>
+    readonly createdAt: FieldRef<"IziesProduct", 'DateTime'>
+    readonly updatedAt: FieldRef<"IziesProduct", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * IziesProduct findUnique
+   */
+  export type IziesProductFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter, which IziesProduct to fetch.
+     */
+    where: IziesProductWhereUniqueInput
+  }
+
+  /**
+   * IziesProduct findUniqueOrThrow
+   */
+  export type IziesProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter, which IziesProduct to fetch.
+     */
+    where: IziesProductWhereUniqueInput
+  }
+
+  /**
+   * IziesProduct findFirst
+   */
+  export type IziesProductFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter, which IziesProduct to fetch.
+     */
+    where?: IziesProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IziesProducts to fetch.
+     */
+    orderBy?: IziesProductOrderByWithRelationInput | IziesProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IziesProducts.
+     */
+    cursor?: IziesProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IziesProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IziesProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IziesProducts.
+     */
+    distinct?: IziesProductScalarFieldEnum | IziesProductScalarFieldEnum[]
+  }
+
+  /**
+   * IziesProduct findFirstOrThrow
+   */
+  export type IziesProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter, which IziesProduct to fetch.
+     */
+    where?: IziesProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IziesProducts to fetch.
+     */
+    orderBy?: IziesProductOrderByWithRelationInput | IziesProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IziesProducts.
+     */
+    cursor?: IziesProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IziesProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IziesProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IziesProducts.
+     */
+    distinct?: IziesProductScalarFieldEnum | IziesProductScalarFieldEnum[]
+  }
+
+  /**
+   * IziesProduct findMany
+   */
+  export type IziesProductFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter, which IziesProducts to fetch.
+     */
+    where?: IziesProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IziesProducts to fetch.
+     */
+    orderBy?: IziesProductOrderByWithRelationInput | IziesProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing IziesProducts.
+     */
+    cursor?: IziesProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IziesProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IziesProducts.
+     */
+    skip?: number
+    distinct?: IziesProductScalarFieldEnum | IziesProductScalarFieldEnum[]
+  }
+
+  /**
+   * IziesProduct create
+   */
+  export type IziesProductCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * The data needed to create a IziesProduct.
+     */
+    data: XOR<IziesProductCreateInput, IziesProductUncheckedCreateInput>
+  }
+
+  /**
+   * IziesProduct createMany
+   */
+  export type IziesProductCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IziesProducts.
+     */
+    data: IziesProductCreateManyInput | IziesProductCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IziesProduct createManyAndReturn
+   */
+  export type IziesProductCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many IziesProducts.
+     */
+    data: IziesProductCreateManyInput | IziesProductCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IziesProduct update
+   */
+  export type IziesProductUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * The data needed to update a IziesProduct.
+     */
+    data: XOR<IziesProductUpdateInput, IziesProductUncheckedUpdateInput>
+    /**
+     * Choose, which IziesProduct to update.
+     */
+    where: IziesProductWhereUniqueInput
+  }
+
+  /**
+   * IziesProduct updateMany
+   */
+  export type IziesProductUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IziesProducts.
+     */
+    data: XOR<IziesProductUpdateManyMutationInput, IziesProductUncheckedUpdateManyInput>
+    /**
+     * Filter which IziesProducts to update
+     */
+    where?: IziesProductWhereInput
+  }
+
+  /**
+   * IziesProduct upsert
+   */
+  export type IziesProductUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * The filter to search for the IziesProduct to update in case it exists.
+     */
+    where: IziesProductWhereUniqueInput
+    /**
+     * In case the IziesProduct found by the `where` argument doesn't exist, create a new IziesProduct with this data.
+     */
+    create: XOR<IziesProductCreateInput, IziesProductUncheckedCreateInput>
+    /**
+     * In case the IziesProduct was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IziesProductUpdateInput, IziesProductUncheckedUpdateInput>
+  }
+
+  /**
+   * IziesProduct delete
+   */
+  export type IziesProductDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+    /**
+     * Filter which IziesProduct to delete.
+     */
+    where: IziesProductWhereUniqueInput
+  }
+
+  /**
+   * IziesProduct deleteMany
+   */
+  export type IziesProductDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IziesProducts to delete
+     */
+    where?: IziesProductWhereInput
+  }
+
+  /**
+   * IziesProduct without action
+   */
+  export type IziesProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IziesProduct
+     */
+    select?: IziesProductSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ClientProject
+   */
+
+  export type AggregateClientProject = {
+    _count: ClientProjectCountAggregateOutputType | null
+    _avg: ClientProjectAvgAggregateOutputType | null
+    _sum: ClientProjectSumAggregateOutputType | null
+    _min: ClientProjectMinAggregateOutputType | null
+    _max: ClientProjectMaxAggregateOutputType | null
+  }
+
+  export type ClientProjectAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ClientProjectSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ClientProjectMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    clientName: string | null
+    industry: string | null
+    description: string | null
+    challenge: string | null
+    solution: string | null
+    result: string | null
+    imageUrl: string | null
+    websiteUrl: string | null
+    startDate: Date | null
+    endDate: Date | null
+    isFeatured: boolean | null
+    order: number | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClientProjectMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    clientName: string | null
+    industry: string | null
+    description: string | null
+    challenge: string | null
+    solution: string | null
+    result: string | null
+    imageUrl: string | null
+    websiteUrl: string | null
+    startDate: Date | null
+    endDate: Date | null
+    isFeatured: boolean | null
+    order: number | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ClientProjectCountAggregateOutputType = {
+    id: number
+    name: number
+    clientName: number
+    industry: number
+    description: number
+    challenge: number
+    solution: number
+    result: number
+    techStack: number
+    services: number
+    imageUrl: number
+    websiteUrl: number
+    startDate: number
+    endDate: number
+    isFeatured: number
+    order: number
+    isPublic: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ClientProjectAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type ClientProjectSumAggregateInputType = {
+    order?: true
+  }
+
+  export type ClientProjectMinAggregateInputType = {
+    id?: true
+    name?: true
+    clientName?: true
+    industry?: true
+    description?: true
+    challenge?: true
+    solution?: true
+    result?: true
+    imageUrl?: true
+    websiteUrl?: true
+    startDate?: true
+    endDate?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClientProjectMaxAggregateInputType = {
+    id?: true
+    name?: true
+    clientName?: true
+    industry?: true
+    description?: true
+    challenge?: true
+    solution?: true
+    result?: true
+    imageUrl?: true
+    websiteUrl?: true
+    startDate?: true
+    endDate?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ClientProjectCountAggregateInputType = {
+    id?: true
+    name?: true
+    clientName?: true
+    industry?: true
+    description?: true
+    challenge?: true
+    solution?: true
+    result?: true
+    techStack?: true
+    services?: true
+    imageUrl?: true
+    websiteUrl?: true
+    startDate?: true
+    endDate?: true
+    isFeatured?: true
+    order?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ClientProjectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClientProject to aggregate.
+     */
+    where?: ClientProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClientProjects to fetch.
+     */
+    orderBy?: ClientProjectOrderByWithRelationInput | ClientProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClientProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClientProjects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClientProjects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ClientProjects
+    **/
+    _count?: true | ClientProjectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ClientProjectAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClientProjectSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClientProjectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClientProjectMaxAggregateInputType
+  }
+
+  export type GetClientProjectAggregateType<T extends ClientProjectAggregateArgs> = {
+        [P in keyof T & keyof AggregateClientProject]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClientProject[P]>
+      : GetScalarType<T[P], AggregateClientProject[P]>
+  }
+
+
+
+
+  export type ClientProjectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClientProjectWhereInput
+    orderBy?: ClientProjectOrderByWithAggregationInput | ClientProjectOrderByWithAggregationInput[]
+    by: ClientProjectScalarFieldEnum[] | ClientProjectScalarFieldEnum
+    having?: ClientProjectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClientProjectCountAggregateInputType | true
+    _avg?: ClientProjectAvgAggregateInputType
+    _sum?: ClientProjectSumAggregateInputType
+    _min?: ClientProjectMinAggregateInputType
+    _max?: ClientProjectMaxAggregateInputType
+  }
+
+  export type ClientProjectGroupByOutputType = {
+    id: string
+    name: string
+    clientName: string
+    industry: string
+    description: string
+    challenge: string | null
+    solution: string | null
+    result: string | null
+    techStack: string[]
+    services: string[]
+    imageUrl: string | null
+    websiteUrl: string | null
+    startDate: Date | null
+    endDate: Date | null
+    isFeatured: boolean
+    order: number
+    isPublic: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ClientProjectCountAggregateOutputType | null
+    _avg: ClientProjectAvgAggregateOutputType | null
+    _sum: ClientProjectSumAggregateOutputType | null
+    _min: ClientProjectMinAggregateOutputType | null
+    _max: ClientProjectMaxAggregateOutputType | null
+  }
+
+  type GetClientProjectGroupByPayload<T extends ClientProjectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClientProjectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClientProjectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClientProjectGroupByOutputType[P]>
+            : GetScalarType<T[P], ClientProjectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClientProjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    clientName?: boolean
+    industry?: boolean
+    description?: boolean
+    challenge?: boolean
+    solution?: boolean
+    result?: boolean
+    techStack?: boolean
+    services?: boolean
+    imageUrl?: boolean
+    websiteUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["clientProject"]>
+
+  export type ClientProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    clientName?: boolean
+    industry?: boolean
+    description?: boolean
+    challenge?: boolean
+    solution?: boolean
+    result?: boolean
+    techStack?: boolean
+    services?: boolean
+    imageUrl?: boolean
+    websiteUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["clientProject"]>
+
+  export type ClientProjectSelectScalar = {
+    id?: boolean
+    name?: boolean
+    clientName?: boolean
+    industry?: boolean
+    description?: boolean
+    challenge?: boolean
+    solution?: boolean
+    result?: boolean
+    techStack?: boolean
+    services?: boolean
+    imageUrl?: boolean
+    websiteUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    isFeatured?: boolean
+    order?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $ClientProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClientProject"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      clientName: string
+      industry: string
+      description: string
+      challenge: string | null
+      solution: string | null
+      result: string | null
+      techStack: string[]
+      services: string[]
+      imageUrl: string | null
+      websiteUrl: string | null
+      startDate: Date | null
+      endDate: Date | null
+      isFeatured: boolean
+      order: number
+      isPublic: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["clientProject"]>
+    composites: {}
+  }
+
+  type ClientProjectGetPayload<S extends boolean | null | undefined | ClientProjectDefaultArgs> = $Result.GetResult<Prisma.$ClientProjectPayload, S>
+
+  type ClientProjectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ClientProjectFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ClientProjectCountAggregateInputType | true
+    }
+
+  export interface ClientProjectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClientProject'], meta: { name: 'ClientProject' } }
+    /**
+     * Find zero or one ClientProject that matches the filter.
+     * @param {ClientProjectFindUniqueArgs} args - Arguments to find a ClientProject
+     * @example
+     * // Get one ClientProject
+     * const clientProject = await prisma.clientProject.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClientProjectFindUniqueArgs>(args: SelectSubset<T, ClientProjectFindUniqueArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ClientProject that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ClientProjectFindUniqueOrThrowArgs} args - Arguments to find a ClientProject
+     * @example
+     * // Get one ClientProject
+     * const clientProject = await prisma.clientProject.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClientProjectFindUniqueOrThrowArgs>(args: SelectSubset<T, ClientProjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ClientProject that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectFindFirstArgs} args - Arguments to find a ClientProject
+     * @example
+     * // Get one ClientProject
+     * const clientProject = await prisma.clientProject.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClientProjectFindFirstArgs>(args?: SelectSubset<T, ClientProjectFindFirstArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ClientProject that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectFindFirstOrThrowArgs} args - Arguments to find a ClientProject
+     * @example
+     * // Get one ClientProject
+     * const clientProject = await prisma.clientProject.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClientProjectFindFirstOrThrowArgs>(args?: SelectSubset<T, ClientProjectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ClientProjects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ClientProjects
+     * const clientProjects = await prisma.clientProject.findMany()
+     * 
+     * // Get first 10 ClientProjects
+     * const clientProjects = await prisma.clientProject.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const clientProjectWithIdOnly = await prisma.clientProject.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ClientProjectFindManyArgs>(args?: SelectSubset<T, ClientProjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ClientProject.
+     * @param {ClientProjectCreateArgs} args - Arguments to create a ClientProject.
+     * @example
+     * // Create one ClientProject
+     * const ClientProject = await prisma.clientProject.create({
+     *   data: {
+     *     // ... data to create a ClientProject
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClientProjectCreateArgs>(args: SelectSubset<T, ClientProjectCreateArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ClientProjects.
+     * @param {ClientProjectCreateManyArgs} args - Arguments to create many ClientProjects.
+     * @example
+     * // Create many ClientProjects
+     * const clientProject = await prisma.clientProject.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClientProjectCreateManyArgs>(args?: SelectSubset<T, ClientProjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ClientProjects and returns the data saved in the database.
+     * @param {ClientProjectCreateManyAndReturnArgs} args - Arguments to create many ClientProjects.
+     * @example
+     * // Create many ClientProjects
+     * const clientProject = await prisma.clientProject.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ClientProjects and only return the `id`
+     * const clientProjectWithIdOnly = await prisma.clientProject.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClientProjectCreateManyAndReturnArgs>(args?: SelectSubset<T, ClientProjectCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ClientProject.
+     * @param {ClientProjectDeleteArgs} args - Arguments to delete one ClientProject.
+     * @example
+     * // Delete one ClientProject
+     * const ClientProject = await prisma.clientProject.delete({
+     *   where: {
+     *     // ... filter to delete one ClientProject
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClientProjectDeleteArgs>(args: SelectSubset<T, ClientProjectDeleteArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ClientProject.
+     * @param {ClientProjectUpdateArgs} args - Arguments to update one ClientProject.
+     * @example
+     * // Update one ClientProject
+     * const clientProject = await prisma.clientProject.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClientProjectUpdateArgs>(args: SelectSubset<T, ClientProjectUpdateArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ClientProjects.
+     * @param {ClientProjectDeleteManyArgs} args - Arguments to filter ClientProjects to delete.
+     * @example
+     * // Delete a few ClientProjects
+     * const { count } = await prisma.clientProject.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClientProjectDeleteManyArgs>(args?: SelectSubset<T, ClientProjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ClientProjects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ClientProjects
+     * const clientProject = await prisma.clientProject.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClientProjectUpdateManyArgs>(args: SelectSubset<T, ClientProjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ClientProject.
+     * @param {ClientProjectUpsertArgs} args - Arguments to update or create a ClientProject.
+     * @example
+     * // Update or create a ClientProject
+     * const clientProject = await prisma.clientProject.upsert({
+     *   create: {
+     *     // ... data to create a ClientProject
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ClientProject we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClientProjectUpsertArgs>(args: SelectSubset<T, ClientProjectUpsertArgs<ExtArgs>>): Prisma__ClientProjectClient<$Result.GetResult<Prisma.$ClientProjectPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ClientProjects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectCountArgs} args - Arguments to filter ClientProjects to count.
+     * @example
+     * // Count the number of ClientProjects
+     * const count = await prisma.clientProject.count({
+     *   where: {
+     *     // ... the filter for the ClientProjects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClientProjectCountArgs>(
+      args?: Subset<T, ClientProjectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClientProjectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ClientProject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClientProjectAggregateArgs>(args: Subset<T, ClientProjectAggregateArgs>): Prisma.PrismaPromise<GetClientProjectAggregateType<T>>
+
+    /**
+     * Group by ClientProject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientProjectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClientProjectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClientProjectGroupByArgs['orderBy'] }
+        : { orderBy?: ClientProjectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClientProjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClientProjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ClientProject model
+   */
+  readonly fields: ClientProjectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ClientProject.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClientProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ClientProject model
+   */ 
+  interface ClientProjectFieldRefs {
+    readonly id: FieldRef<"ClientProject", 'String'>
+    readonly name: FieldRef<"ClientProject", 'String'>
+    readonly clientName: FieldRef<"ClientProject", 'String'>
+    readonly industry: FieldRef<"ClientProject", 'String'>
+    readonly description: FieldRef<"ClientProject", 'String'>
+    readonly challenge: FieldRef<"ClientProject", 'String'>
+    readonly solution: FieldRef<"ClientProject", 'String'>
+    readonly result: FieldRef<"ClientProject", 'String'>
+    readonly techStack: FieldRef<"ClientProject", 'String[]'>
+    readonly services: FieldRef<"ClientProject", 'String[]'>
+    readonly imageUrl: FieldRef<"ClientProject", 'String'>
+    readonly websiteUrl: FieldRef<"ClientProject", 'String'>
+    readonly startDate: FieldRef<"ClientProject", 'DateTime'>
+    readonly endDate: FieldRef<"ClientProject", 'DateTime'>
+    readonly isFeatured: FieldRef<"ClientProject", 'Boolean'>
+    readonly order: FieldRef<"ClientProject", 'Int'>
+    readonly isPublic: FieldRef<"ClientProject", 'Boolean'>
+    readonly createdAt: FieldRef<"ClientProject", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClientProject", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ClientProject findUnique
+   */
+  export type ClientProjectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter, which ClientProject to fetch.
+     */
+    where: ClientProjectWhereUniqueInput
+  }
+
+  /**
+   * ClientProject findUniqueOrThrow
+   */
+  export type ClientProjectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter, which ClientProject to fetch.
+     */
+    where: ClientProjectWhereUniqueInput
+  }
+
+  /**
+   * ClientProject findFirst
+   */
+  export type ClientProjectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter, which ClientProject to fetch.
+     */
+    where?: ClientProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClientProjects to fetch.
+     */
+    orderBy?: ClientProjectOrderByWithRelationInput | ClientProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClientProjects.
+     */
+    cursor?: ClientProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClientProjects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClientProjects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClientProjects.
+     */
+    distinct?: ClientProjectScalarFieldEnum | ClientProjectScalarFieldEnum[]
+  }
+
+  /**
+   * ClientProject findFirstOrThrow
+   */
+  export type ClientProjectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter, which ClientProject to fetch.
+     */
+    where?: ClientProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClientProjects to fetch.
+     */
+    orderBy?: ClientProjectOrderByWithRelationInput | ClientProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ClientProjects.
+     */
+    cursor?: ClientProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClientProjects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClientProjects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ClientProjects.
+     */
+    distinct?: ClientProjectScalarFieldEnum | ClientProjectScalarFieldEnum[]
+  }
+
+  /**
+   * ClientProject findMany
+   */
+  export type ClientProjectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter, which ClientProjects to fetch.
+     */
+    where?: ClientProjectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ClientProjects to fetch.
+     */
+    orderBy?: ClientProjectOrderByWithRelationInput | ClientProjectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ClientProjects.
+     */
+    cursor?: ClientProjectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ClientProjects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ClientProjects.
+     */
+    skip?: number
+    distinct?: ClientProjectScalarFieldEnum | ClientProjectScalarFieldEnum[]
+  }
+
+  /**
+   * ClientProject create
+   */
+  export type ClientProjectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ClientProject.
+     */
+    data: XOR<ClientProjectCreateInput, ClientProjectUncheckedCreateInput>
+  }
+
+  /**
+   * ClientProject createMany
+   */
+  export type ClientProjectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ClientProjects.
+     */
+    data: ClientProjectCreateManyInput | ClientProjectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClientProject createManyAndReturn
+   */
+  export type ClientProjectCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ClientProjects.
+     */
+    data: ClientProjectCreateManyInput | ClientProjectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ClientProject update
+   */
+  export type ClientProjectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ClientProject.
+     */
+    data: XOR<ClientProjectUpdateInput, ClientProjectUncheckedUpdateInput>
+    /**
+     * Choose, which ClientProject to update.
+     */
+    where: ClientProjectWhereUniqueInput
+  }
+
+  /**
+   * ClientProject updateMany
+   */
+  export type ClientProjectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ClientProjects.
+     */
+    data: XOR<ClientProjectUpdateManyMutationInput, ClientProjectUncheckedUpdateManyInput>
+    /**
+     * Filter which ClientProjects to update
+     */
+    where?: ClientProjectWhereInput
+  }
+
+  /**
+   * ClientProject upsert
+   */
+  export type ClientProjectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ClientProject to update in case it exists.
+     */
+    where: ClientProjectWhereUniqueInput
+    /**
+     * In case the ClientProject found by the `where` argument doesn't exist, create a new ClientProject with this data.
+     */
+    create: XOR<ClientProjectCreateInput, ClientProjectUncheckedCreateInput>
+    /**
+     * In case the ClientProject was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClientProjectUpdateInput, ClientProjectUncheckedUpdateInput>
+  }
+
+  /**
+   * ClientProject delete
+   */
+  export type ClientProjectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+    /**
+     * Filter which ClientProject to delete.
+     */
+    where: ClientProjectWhereUniqueInput
+  }
+
+  /**
+   * ClientProject deleteMany
+   */
+  export type ClientProjectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ClientProjects to delete
+     */
+    where?: ClientProjectWhereInput
+  }
+
+  /**
+   * ClientProject without action
+   */
+  export type ClientProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientProject
+     */
+    select?: ClientProjectSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18424,6 +20716,54 @@ export namespace Prisma {
   };
 
   export type ContactInquiryScalarFieldEnum = (typeof ContactInquiryScalarFieldEnum)[keyof typeof ContactInquiryScalarFieldEnum]
+
+
+  export const IziesProductScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    tagline: 'tagline',
+    description: 'description',
+    type: 'type',
+    status: 'status',
+    url: 'url',
+    imageUrl: 'imageUrl',
+    iconName: 'iconName',
+    color: 'color',
+    tags: 'tags',
+    services: 'services',
+    isFeatured: 'isFeatured',
+    order: 'order',
+    isPublic: 'isPublic',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type IziesProductScalarFieldEnum = (typeof IziesProductScalarFieldEnum)[keyof typeof IziesProductScalarFieldEnum]
+
+
+  export const ClientProjectScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    clientName: 'clientName',
+    industry: 'industry',
+    description: 'description',
+    challenge: 'challenge',
+    solution: 'solution',
+    result: 'result',
+    techStack: 'techStack',
+    services: 'services',
+    imageUrl: 'imageUrl',
+    websiteUrl: 'websiteUrl',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    isFeatured: 'isFeatured',
+    order: 'order',
+    isPublic: 'isPublic',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ClientProjectScalarFieldEnum = (typeof ClientProjectScalarFieldEnum)[keyof typeof ClientProjectScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20232,6 +22572,244 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"ContactInquiry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ContactInquiry"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ContactInquiry"> | Date | string
+  }
+
+  export type IziesProductWhereInput = {
+    AND?: IziesProductWhereInput | IziesProductWhereInput[]
+    OR?: IziesProductWhereInput[]
+    NOT?: IziesProductWhereInput | IziesProductWhereInput[]
+    id?: StringFilter<"IziesProduct"> | string
+    name?: StringFilter<"IziesProduct"> | string
+    tagline?: StringFilter<"IziesProduct"> | string
+    description?: StringFilter<"IziesProduct"> | string
+    type?: StringFilter<"IziesProduct"> | string
+    status?: StringFilter<"IziesProduct"> | string
+    url?: StringNullableFilter<"IziesProduct"> | string | null
+    imageUrl?: StringNullableFilter<"IziesProduct"> | string | null
+    iconName?: StringNullableFilter<"IziesProduct"> | string | null
+    color?: StringNullableFilter<"IziesProduct"> | string | null
+    tags?: StringNullableListFilter<"IziesProduct">
+    services?: StringNullableListFilter<"IziesProduct">
+    isFeatured?: BoolFilter<"IziesProduct"> | boolean
+    order?: IntFilter<"IziesProduct"> | number
+    isPublic?: BoolFilter<"IziesProduct"> | boolean
+    createdAt?: DateTimeFilter<"IziesProduct"> | Date | string
+    updatedAt?: DateTimeFilter<"IziesProduct"> | Date | string
+  }
+
+  export type IziesProductOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tagline?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    url?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    iconName?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    services?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IziesProductWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: IziesProductWhereInput | IziesProductWhereInput[]
+    OR?: IziesProductWhereInput[]
+    NOT?: IziesProductWhereInput | IziesProductWhereInput[]
+    name?: StringFilter<"IziesProduct"> | string
+    tagline?: StringFilter<"IziesProduct"> | string
+    description?: StringFilter<"IziesProduct"> | string
+    type?: StringFilter<"IziesProduct"> | string
+    status?: StringFilter<"IziesProduct"> | string
+    url?: StringNullableFilter<"IziesProduct"> | string | null
+    imageUrl?: StringNullableFilter<"IziesProduct"> | string | null
+    iconName?: StringNullableFilter<"IziesProduct"> | string | null
+    color?: StringNullableFilter<"IziesProduct"> | string | null
+    tags?: StringNullableListFilter<"IziesProduct">
+    services?: StringNullableListFilter<"IziesProduct">
+    isFeatured?: BoolFilter<"IziesProduct"> | boolean
+    order?: IntFilter<"IziesProduct"> | number
+    isPublic?: BoolFilter<"IziesProduct"> | boolean
+    createdAt?: DateTimeFilter<"IziesProduct"> | Date | string
+    updatedAt?: DateTimeFilter<"IziesProduct"> | Date | string
+  }, "id">
+
+  export type IziesProductOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tagline?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    url?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    iconName?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    services?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: IziesProductCountOrderByAggregateInput
+    _avg?: IziesProductAvgOrderByAggregateInput
+    _max?: IziesProductMaxOrderByAggregateInput
+    _min?: IziesProductMinOrderByAggregateInput
+    _sum?: IziesProductSumOrderByAggregateInput
+  }
+
+  export type IziesProductScalarWhereWithAggregatesInput = {
+    AND?: IziesProductScalarWhereWithAggregatesInput | IziesProductScalarWhereWithAggregatesInput[]
+    OR?: IziesProductScalarWhereWithAggregatesInput[]
+    NOT?: IziesProductScalarWhereWithAggregatesInput | IziesProductScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"IziesProduct"> | string
+    name?: StringWithAggregatesFilter<"IziesProduct"> | string
+    tagline?: StringWithAggregatesFilter<"IziesProduct"> | string
+    description?: StringWithAggregatesFilter<"IziesProduct"> | string
+    type?: StringWithAggregatesFilter<"IziesProduct"> | string
+    status?: StringWithAggregatesFilter<"IziesProduct"> | string
+    url?: StringNullableWithAggregatesFilter<"IziesProduct"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"IziesProduct"> | string | null
+    iconName?: StringNullableWithAggregatesFilter<"IziesProduct"> | string | null
+    color?: StringNullableWithAggregatesFilter<"IziesProduct"> | string | null
+    tags?: StringNullableListFilter<"IziesProduct">
+    services?: StringNullableListFilter<"IziesProduct">
+    isFeatured?: BoolWithAggregatesFilter<"IziesProduct"> | boolean
+    order?: IntWithAggregatesFilter<"IziesProduct"> | number
+    isPublic?: BoolWithAggregatesFilter<"IziesProduct"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"IziesProduct"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"IziesProduct"> | Date | string
+  }
+
+  export type ClientProjectWhereInput = {
+    AND?: ClientProjectWhereInput | ClientProjectWhereInput[]
+    OR?: ClientProjectWhereInput[]
+    NOT?: ClientProjectWhereInput | ClientProjectWhereInput[]
+    id?: StringFilter<"ClientProject"> | string
+    name?: StringFilter<"ClientProject"> | string
+    clientName?: StringFilter<"ClientProject"> | string
+    industry?: StringFilter<"ClientProject"> | string
+    description?: StringFilter<"ClientProject"> | string
+    challenge?: StringNullableFilter<"ClientProject"> | string | null
+    solution?: StringNullableFilter<"ClientProject"> | string | null
+    result?: StringNullableFilter<"ClientProject"> | string | null
+    techStack?: StringNullableListFilter<"ClientProject">
+    services?: StringNullableListFilter<"ClientProject">
+    imageUrl?: StringNullableFilter<"ClientProject"> | string | null
+    websiteUrl?: StringNullableFilter<"ClientProject"> | string | null
+    startDate?: DateTimeNullableFilter<"ClientProject"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"ClientProject"> | Date | string | null
+    isFeatured?: BoolFilter<"ClientProject"> | boolean
+    order?: IntFilter<"ClientProject"> | number
+    isPublic?: BoolFilter<"ClientProject"> | boolean
+    createdAt?: DateTimeFilter<"ClientProject"> | Date | string
+    updatedAt?: DateTimeFilter<"ClientProject"> | Date | string
+  }
+
+  export type ClientProjectOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    clientName?: SortOrder
+    industry?: SortOrder
+    description?: SortOrder
+    challenge?: SortOrderInput | SortOrder
+    solution?: SortOrderInput | SortOrder
+    result?: SortOrderInput | SortOrder
+    techStack?: SortOrder
+    services?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    websiteUrl?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClientProjectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ClientProjectWhereInput | ClientProjectWhereInput[]
+    OR?: ClientProjectWhereInput[]
+    NOT?: ClientProjectWhereInput | ClientProjectWhereInput[]
+    name?: StringFilter<"ClientProject"> | string
+    clientName?: StringFilter<"ClientProject"> | string
+    industry?: StringFilter<"ClientProject"> | string
+    description?: StringFilter<"ClientProject"> | string
+    challenge?: StringNullableFilter<"ClientProject"> | string | null
+    solution?: StringNullableFilter<"ClientProject"> | string | null
+    result?: StringNullableFilter<"ClientProject"> | string | null
+    techStack?: StringNullableListFilter<"ClientProject">
+    services?: StringNullableListFilter<"ClientProject">
+    imageUrl?: StringNullableFilter<"ClientProject"> | string | null
+    websiteUrl?: StringNullableFilter<"ClientProject"> | string | null
+    startDate?: DateTimeNullableFilter<"ClientProject"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"ClientProject"> | Date | string | null
+    isFeatured?: BoolFilter<"ClientProject"> | boolean
+    order?: IntFilter<"ClientProject"> | number
+    isPublic?: BoolFilter<"ClientProject"> | boolean
+    createdAt?: DateTimeFilter<"ClientProject"> | Date | string
+    updatedAt?: DateTimeFilter<"ClientProject"> | Date | string
+  }, "id">
+
+  export type ClientProjectOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    clientName?: SortOrder
+    industry?: SortOrder
+    description?: SortOrder
+    challenge?: SortOrderInput | SortOrder
+    solution?: SortOrderInput | SortOrder
+    result?: SortOrderInput | SortOrder
+    techStack?: SortOrder
+    services?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    websiteUrl?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ClientProjectCountOrderByAggregateInput
+    _avg?: ClientProjectAvgOrderByAggregateInput
+    _max?: ClientProjectMaxOrderByAggregateInput
+    _min?: ClientProjectMinOrderByAggregateInput
+    _sum?: ClientProjectSumOrderByAggregateInput
+  }
+
+  export type ClientProjectScalarWhereWithAggregatesInput = {
+    AND?: ClientProjectScalarWhereWithAggregatesInput | ClientProjectScalarWhereWithAggregatesInput[]
+    OR?: ClientProjectScalarWhereWithAggregatesInput[]
+    NOT?: ClientProjectScalarWhereWithAggregatesInput | ClientProjectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ClientProject"> | string
+    name?: StringWithAggregatesFilter<"ClientProject"> | string
+    clientName?: StringWithAggregatesFilter<"ClientProject"> | string
+    industry?: StringWithAggregatesFilter<"ClientProject"> | string
+    description?: StringWithAggregatesFilter<"ClientProject"> | string
+    challenge?: StringNullableWithAggregatesFilter<"ClientProject"> | string | null
+    solution?: StringNullableWithAggregatesFilter<"ClientProject"> | string | null
+    result?: StringNullableWithAggregatesFilter<"ClientProject"> | string | null
+    techStack?: StringNullableListFilter<"ClientProject">
+    services?: StringNullableListFilter<"ClientProject">
+    imageUrl?: StringNullableWithAggregatesFilter<"ClientProject"> | string | null
+    websiteUrl?: StringNullableWithAggregatesFilter<"ClientProject"> | string | null
+    startDate?: DateTimeNullableWithAggregatesFilter<"ClientProject"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"ClientProject"> | Date | string | null
+    isFeatured?: BoolWithAggregatesFilter<"ClientProject"> | boolean
+    order?: IntWithAggregatesFilter<"ClientProject"> | number
+    isPublic?: BoolWithAggregatesFilter<"ClientProject"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ClientProject"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClientProject"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -22148,6 +24726,300 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type IziesProductCreateInput = {
+    id?: string
+    name: string
+    tagline: string
+    description: string
+    type?: string
+    status?: string
+    url?: string | null
+    imageUrl?: string | null
+    iconName?: string | null
+    color?: string | null
+    tags?: IziesProductCreatetagsInput | string[]
+    services?: IziesProductCreateservicesInput | string[]
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IziesProductUncheckedCreateInput = {
+    id?: string
+    name: string
+    tagline: string
+    description: string
+    type?: string
+    status?: string
+    url?: string | null
+    imageUrl?: string | null
+    iconName?: string | null
+    color?: string | null
+    tags?: IziesProductCreatetagsInput | string[]
+    services?: IziesProductCreateservicesInput | string[]
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IziesProductUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    iconName?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: IziesProductUpdatetagsInput | string[]
+    services?: IziesProductUpdateservicesInput | string[]
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IziesProductUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    iconName?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: IziesProductUpdatetagsInput | string[]
+    services?: IziesProductUpdateservicesInput | string[]
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IziesProductCreateManyInput = {
+    id?: string
+    name: string
+    tagline: string
+    description: string
+    type?: string
+    status?: string
+    url?: string | null
+    imageUrl?: string | null
+    iconName?: string | null
+    color?: string | null
+    tags?: IziesProductCreatetagsInput | string[]
+    services?: IziesProductCreateservicesInput | string[]
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IziesProductUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    iconName?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: IziesProductUpdatetagsInput | string[]
+    services?: IziesProductUpdateservicesInput | string[]
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IziesProductUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    iconName?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: IziesProductUpdatetagsInput | string[]
+    services?: IziesProductUpdateservicesInput | string[]
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClientProjectCreateInput = {
+    id?: string
+    name: string
+    clientName: string
+    industry: string
+    description: string
+    challenge?: string | null
+    solution?: string | null
+    result?: string | null
+    techStack?: ClientProjectCreatetechStackInput | string[]
+    services?: ClientProjectCreateservicesInput | string[]
+    imageUrl?: string | null
+    websiteUrl?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClientProjectUncheckedCreateInput = {
+    id?: string
+    name: string
+    clientName: string
+    industry: string
+    description: string
+    challenge?: string | null
+    solution?: string | null
+    result?: string | null
+    techStack?: ClientProjectCreatetechStackInput | string[]
+    services?: ClientProjectCreateservicesInput | string[]
+    imageUrl?: string | null
+    websiteUrl?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClientProjectUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    clientName?: StringFieldUpdateOperationsInput | string
+    industry?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenge?: NullableStringFieldUpdateOperationsInput | string | null
+    solution?: NullableStringFieldUpdateOperationsInput | string | null
+    result?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ClientProjectUpdatetechStackInput | string[]
+    services?: ClientProjectUpdateservicesInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClientProjectUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    clientName?: StringFieldUpdateOperationsInput | string
+    industry?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenge?: NullableStringFieldUpdateOperationsInput | string | null
+    solution?: NullableStringFieldUpdateOperationsInput | string | null
+    result?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ClientProjectUpdatetechStackInput | string[]
+    services?: ClientProjectUpdateservicesInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClientProjectCreateManyInput = {
+    id?: string
+    name: string
+    clientName: string
+    industry: string
+    description: string
+    challenge?: string | null
+    solution?: string | null
+    result?: string | null
+    techStack?: ClientProjectCreatetechStackInput | string[]
+    services?: ClientProjectCreateservicesInput | string[]
+    imageUrl?: string | null
+    websiteUrl?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    isFeatured?: boolean
+    order?: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClientProjectUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    clientName?: StringFieldUpdateOperationsInput | string
+    industry?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenge?: NullableStringFieldUpdateOperationsInput | string | null
+    solution?: NullableStringFieldUpdateOperationsInput | string | null
+    result?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ClientProjectUpdatetechStackInput | string[]
+    services?: ClientProjectUpdateservicesInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClientProjectUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    clientName?: StringFieldUpdateOperationsInput | string
+    industry?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenge?: NullableStringFieldUpdateOperationsInput | string | null
+    solution?: NullableStringFieldUpdateOperationsInput | string | null
+    result?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ClientProjectUpdatetechStackInput | string[]
+    services?: ClientProjectUpdateservicesInput | string[]
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    order?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -23420,6 +26292,140 @@ export namespace Prisma {
     _max?: NestedEnumInquiryStatusFilter<$PrismaModel>
   }
 
+  export type IziesProductCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tagline?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    url?: SortOrder
+    imageUrl?: SortOrder
+    iconName?: SortOrder
+    color?: SortOrder
+    tags?: SortOrder
+    services?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IziesProductAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type IziesProductMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tagline?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    url?: SortOrder
+    imageUrl?: SortOrder
+    iconName?: SortOrder
+    color?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IziesProductMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    tagline?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    url?: SortOrder
+    imageUrl?: SortOrder
+    iconName?: SortOrder
+    color?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IziesProductSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ClientProjectCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    clientName?: SortOrder
+    industry?: SortOrder
+    description?: SortOrder
+    challenge?: SortOrder
+    solution?: SortOrder
+    result?: SortOrder
+    techStack?: SortOrder
+    services?: SortOrder
+    imageUrl?: SortOrder
+    websiteUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClientProjectAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ClientProjectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    clientName?: SortOrder
+    industry?: SortOrder
+    description?: SortOrder
+    challenge?: SortOrder
+    solution?: SortOrder
+    result?: SortOrder
+    imageUrl?: SortOrder
+    websiteUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClientProjectMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    clientName?: SortOrder
+    industry?: SortOrder
+    description?: SortOrder
+    challenge?: SortOrder
+    solution?: SortOrder
+    result?: SortOrder
+    imageUrl?: SortOrder
+    websiteUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    isFeatured?: SortOrder
+    order?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ClientProjectSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
   export type ApplicationNoteCreateNestedManyWithoutAuthorInput = {
     create?: XOR<ApplicationNoteCreateWithoutAuthorInput, ApplicationNoteUncheckedCreateWithoutAuthorInput> | ApplicationNoteCreateWithoutAuthorInput[] | ApplicationNoteUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: ApplicationNoteCreateOrConnectWithoutAuthorInput | ApplicationNoteCreateOrConnectWithoutAuthorInput[]
@@ -24022,6 +27028,42 @@ export namespace Prisma {
 
   export type EnumInquiryStatusFieldUpdateOperationsInput = {
     set?: $Enums.InquiryStatus
+  }
+
+  export type IziesProductCreatetagsInput = {
+    set: string[]
+  }
+
+  export type IziesProductCreateservicesInput = {
+    set: string[]
+  }
+
+  export type IziesProductUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type IziesProductUpdateservicesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ClientProjectCreatetechStackInput = {
+    set: string[]
+  }
+
+  export type ClientProjectCreateservicesInput = {
+    set: string[]
+  }
+
+  export type ClientProjectUpdatetechStackInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ClientProjectUpdateservicesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -26781,6 +29823,14 @@ export namespace Prisma {
      * @deprecated Use ContactInquiryDefaultArgs instead
      */
     export type ContactInquiryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContactInquiryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use IziesProductDefaultArgs instead
+     */
+    export type IziesProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = IziesProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ClientProjectDefaultArgs instead
+     */
+    export type ClientProjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ClientProjectDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -392,6 +392,48 @@ exports.Prisma.ContactInquiryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.IziesProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tagline: 'tagline',
+  description: 'description',
+  type: 'type',
+  status: 'status',
+  url: 'url',
+  imageUrl: 'imageUrl',
+  iconName: 'iconName',
+  color: 'color',
+  tags: 'tags',
+  services: 'services',
+  isFeatured: 'isFeatured',
+  order: 'order',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ClientProjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  clientName: 'clientName',
+  industry: 'industry',
+  description: 'description',
+  challenge: 'challenge',
+  solution: 'solution',
+  result: 'result',
+  techStack: 'techStack',
+  services: 'services',
+  imageUrl: 'imageUrl',
+  websiteUrl: 'websiteUrl',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isFeatured: 'isFeatured',
+  order: 'order',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -487,7 +529,9 @@ exports.Prisma.ModelName = {
   EmailTemplate: 'EmailTemplate',
   OfferLetterSettings: 'OfferLetterSettings',
   SystemSetting: 'SystemSetting',
-  ContactInquiry: 'ContactInquiry'
+  ContactInquiry: 'ContactInquiry',
+  IziesProduct: 'IziesProduct',
+  ClientProject: 'ClientProject'
 };
 
 /**

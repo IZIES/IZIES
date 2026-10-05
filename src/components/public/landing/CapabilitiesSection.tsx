@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { capabilityContent } from "@/lib/capabilities";
 import { SectionExperience } from "./SectionExperience";
 import {
@@ -18,11 +19,20 @@ import {
     Compass,
     Bug,
     Users,
-    Headphones
+    Headphones,
+    Briefcase
   } from "lucide-react";
 
 export function CapabilitiesSection() {
   const [activeCapCategory, setActiveCapCategory] = useState<string>("all");
+  const [projects, setProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/client-projects")
+      .then((r) => r.json())
+      .then((d) => { if (d.success) setProjects(d.projects); })
+      .catch(() => {});
+  }, []);
 
   const capabilities = [
     {
@@ -242,7 +252,7 @@ export function CapabilitiesSection() {
                 </div>
 
                 <ul className="space-y-2 pt-1 border-t border-white/[0.06] text-xs sm:text-sm text-slate-300">
-                  {cap.items.map((item, i) => (
+                  {cap.items.map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className={`h-1.5 w-1.5 rounded-full mt-1.5 shrink-0 ${cap.accent}`} />
                       <span>{item}</span>
@@ -250,6 +260,35 @@ export function CapabilitiesSection() {
                   ))}
                 </ul>
               </div>
+
+              {/* Show Related Client Projects (Trust Builder) */}
+              {projects.filter(p => p.services && p.services.some((s: string) => s.toLowerCase() === cap.title.toLowerCase() || cap.title.toLowerCase().includes(s.toLowerCase()))).length > 0 && (
+                <div className="pt-5 mt-5 border-t border-white/[0.06]">
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-3">Case Studies</p>
+                  <div className="flex flex-col gap-2">
+                    {projects
+                      .filter(p => p.services && p.services.some((s: string) => s.toLowerCase() === cap.title.toLowerCase() || cap.title.toLowerCase().includes(s.toLowerCase())))
+                      .slice(0, 2)
+                      .map(project => (
+                        <Link key={project.id} href={`/work/${project.id}`} className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/[0.04] transition-colors border border-transparent hover:border-white/[0.05] group/project z-20">
+                          {project.imageUrl ? (
+                            <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0">
+                              <Image src={project.imageUrl} alt={project.name} fill className="object-cover" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                              <Briefcase className="w-4 h-4 text-indigo-400" />
+                            </div>
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-white truncate group-hover/project:text-cyan-300 transition-colors">{project.name}</p>
+                            <p className="text-[10px] text-slate-500 truncate">{project.clientName}</p>
+                          </div>
+                        </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
 
             </article>
             </Link>
