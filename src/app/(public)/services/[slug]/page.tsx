@@ -248,7 +248,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div className="space-y-2">
                   <h2 className="text-2xl sm:text-3xl font-bold text-white">Products & Platforms We Built</h2>
-                  <p className="text-sm text-slate-300">We don't just build for clients; we build and scale our own tech products leveraging this exact capability.</p>
+                  <p className="text-sm text-slate-300">We don&apos;t just build for clients; we build and scale our own tech products leveraging this exact capability.</p>
                 </div>
                 <Link href={`/products?service=${service.slug}`} className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20 mt-2 sm:mt-0">
                   View all {relatedProducts.length} products <ArrowRight className="w-4 h-4" />

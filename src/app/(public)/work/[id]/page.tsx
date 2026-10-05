@@ -10,8 +10,11 @@ import { capabilityContent } from "@/lib/capabilities";
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const project = await prisma.clientProject.findUnique({ where: { id: params.id } });
+type Props = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const resolvedParams = await params;
+  const project = await prisma.clientProject.findUnique({ where: { id: resolvedParams.id } });
   if (!project) return businessMetadata("Project Not Found", "The requested project does not exist.", "/work");
   
   return businessMetadata(
@@ -21,17 +24,31 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   );
 }
 
-export default async function WorkDetailsPage({ params }: { params: { id: string } }) {
+export default async function WorkDetailsPage({ params }: Props) {
+  const resolvedParams = await params;
   const project = await prisma.clientProject.findUnique({
-    where: { id: params.id }
+    where: { id: resolvedParams.id }
   });
 
   if (!project || !project.isPublic) {
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: project.name,
+    description: project.description,
+    image: project.imageUrl || "https://izies.in/brand/izies-social-card-1200x630.png",
+    author: {
+      "@type": "Organization",
+      name: "IZIES"
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#04060A] text-slate-100 selection:bg-cyan-500/20 selection:text-cyan-300">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }} />
       <Navbar />
 
       {/* Hero Section */}

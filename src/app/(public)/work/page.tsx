@@ -16,13 +16,16 @@ export const metadata = businessMetadata(
   "/work"
 );
 
-export default async function WorkPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+type Props = { searchParams: Promise<{ [key: string]: string | string[] | undefined }> };
+
+export default async function WorkPage({ searchParams }: Props) {
   let projects = await prisma.clientProject.findMany({
     where: { isPublic: true },
     orderBy: [{ order: "asc" }, { createdAt: "desc" }],
   });
 
-  const serviceSlug = searchParams?.service as string;
+  const resolvedParams = await searchParams;
+  const serviceSlug = resolvedParams?.service as string;
   let activeService: any = null;
   if (serviceSlug) {
     activeService = Object.values(capabilityContent).find(c => c.slug === serviceSlug);

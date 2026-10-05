@@ -12,13 +12,16 @@ export const metadata = businessMetadata(
   "/products",
 );
 
-export default async function ProductsPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+type Props = { searchParams: Promise<{ [key: string]: string | string[] | undefined }> };
+
+export default async function ProductsPage({ searchParams }: Props) {
   let products = await prisma.iziesProduct.findMany({
     where: { isPublic: true },
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 
-  const serviceSlug = searchParams?.service as string;
+  const resolvedParams = await searchParams;
+  const serviceSlug = resolvedParams?.service as string;
   let activeService: any = null;
   if (serviceSlug) {
     activeService = Object.values(capabilityContent).find(c => c.slug === serviceSlug);
@@ -29,5 +32,26 @@ export default async function ProductsPage({ searchParams }: { searchParams: { [
     }
   }
 
-  return <ProductsPageClient products={products} activeService={activeService} />;
+  const catalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": products.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "url": p.url,
+        "name": p.name,
+        "description": p.description,
+        "image": p.imageUrl ? `https://izies.in${p.imageUrl}` : undefined
+      }
+    }))
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema).replace(/</g, '\\u003c') }} />
+      <ProductsPageClient products={products} activeService={activeService} />
+    </>
+  );
 }
