@@ -1,8 +1,6 @@
 import { Navbar } from "@/components/public/Navbar";
 import { Footer } from "@/components/public/Footer";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 export default function PublicLayout({
   children,

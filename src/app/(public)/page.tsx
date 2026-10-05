@@ -18,8 +18,6 @@ const AboutSection = nextDynamic(() => import("@/components/public/landing/About
 const LeadershipSection = nextDynamic(() => import("@/components/public/landing/LeadershipSection").then(mod => mod.LeadershipSection));
 const ContactSection = nextDynamic(() => import("@/components/public/landing/ContactSection").then(mod => mod.ContactSection));
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 export const metadata = businessMetadata(
   "Digital Engineering & Software Development",

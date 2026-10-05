@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Allow local production verification without overwriting a running dev server.
   distDir: process.env.NEXT_BUILD_DIR || '.next',
   trailingSlash: false,
   experimental: {
-    outputFileTracingIncludes: {
-      "/*": ["./src/generated/prisma/**/*"],
-    },
   },
   async redirects() {
     return [{
